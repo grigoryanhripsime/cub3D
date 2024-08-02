@@ -5,13 +5,13 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -I mlx #-g3 -fsanitize=address
 LDFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-HEADERS = inc/cub3d.h #inc/get_next_line.h 
+HEADERS = inc/cub3d.h inc/get_next_line.h 
 
 SRCS_DIR = src/
 
 OBJS_DIR = objs/
 
-SRCS_NAME = main.c
+SRCS_NAME = main.c get_next_line.c get_next_line_utils.c err.c utils.c valid_map.c
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))

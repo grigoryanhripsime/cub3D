@@ -42,4 +42,29 @@ typedef struct s_vars
 	void		*win;
 }	t_vars;
 
+typedef struct s_map
+{
+	char			*line;
+	struct s_map	*next;
+} t_map;
+
+typedef struct s_cub
+{
+	char **map;
+} t_cub;
+
+
+//utils.c
+int		ft_strlen(char *s);
+void	ft_lstadd_back(t_map **lst,char *new);
+int	ft_lstsize(t_map *lst);
+
+//err.c
+void err(char *str);
+void free_map(t_map *map);
+
+//valid_map.c
+t_map	*check_valid_map(char *map);
+
+
 #endif

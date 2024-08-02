@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 20:29:23 by hrigrigo          #+#    #+#             */
+/*   Updated: 2024/08/02 20:40:55 by hrigrigo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 int	ext(void *params)
 {
 	t_vars		*vars;
-	int			i;
 
+	//int			i;
 	vars = params;
 	mlx_destroy_window(vars->mlx, vars->win);
 	//free_map(&vars);
@@ -12,7 +24,7 @@ int	ext(void *params)
 	return (0);
 }
 
-void open_window(t_vars **vars)
+void	open_window(t_vars **vars)
 {
 	(*vars)->mlx = mlx_init();
 	(*vars)->win = mlx_new_window((*vars)->mlx,
@@ -21,13 +33,14 @@ void open_window(t_vars **vars)
 	mlx_loop((*vars)->mlx);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_vars		*vars;
 
-	(void)av;
-	ac = 1;
-	vars = (t_vars *)malloc(sizeof(t_vars));
-	open_window(&vars);
+	cub.map = init_map();
+	(void) vars;
+	(void) ac;
+	// ac = 1;
+	// vars = (t_vars *)malloc(sizeof(t_vars));
+	// open_window(&vars);
 }
-
