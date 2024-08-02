@@ -34,6 +34,12 @@ typedef struct s_rt
 	int		hit;
 	int		side;
 
-}	t_rt
+}	t_rt;
+
+typedef struct s_vars
+{
+	void		*mlx;
+	void		*win;
+}	t_vars;
 
 #endif

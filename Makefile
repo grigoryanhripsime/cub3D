@@ -11,7 +11,7 @@ SRCS_DIR = src/
 
 OBJS_DIR = objs/
 
-SRCS_NAME = main.c \
+SRCS_NAME = main.c
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
