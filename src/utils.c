@@ -63,7 +63,22 @@ void	ft_lstadd_back(t_map **lst, char *new)
 
 int ft_isspace(int ch)
 {
+	if (!ch)
+		return (0);
 	if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\f' || ch == '\r' || ch == '\v')
 		return (1);
+	return (0);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char) c)
+			return ((char *) s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *) s);
 	return (0);
 }

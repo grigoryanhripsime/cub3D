@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 CC = cc
 
@@ -11,7 +11,13 @@ SRCS_DIR = src/
 
 OBJS_DIR = objs/
 
-SRCS_NAME = main.c get_next_line.c get_next_line_utils.c err.c utils.c valid_map.c
+SRCS_NAME = main.c \
+			get_next_line.c \
+			get_next_line_utils.c \
+			err.c \
+			utils.c \
+			valid_map.c \
+			struct_map_check.c \
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))

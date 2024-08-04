@@ -59,6 +59,7 @@ int		ft_strlen(char *s);
 int		ft_lstsize(t_map *lst);
 void	ft_lstadd_back(t_map **lst,char *new);
 int		ft_isspace(int ch);
+char	*ft_strchr(char *s, int c);
 
 //err.c
 void	err(char *str);
@@ -66,14 +67,20 @@ void	free_map_struct(t_map *map);
 void	free_map(char **map);
 
 //valid_map.c
-int		name_check(char *s);
-void	check_valid_chars(t_map *map);
-t_map	*check_valid_map_struct(char *map);
 char	**lst_to_array(t_map *map_stract);
-char *replace_tab_with_spaces(char **map, int i, int j);
+char	*replace_tab_with_spaces(char **map, int i, int j);
 void	tabs_to_spaces(char **map);
 void	check_borders(char **map);
 char	**init_map(char *av);
+
+//struct_map_check.c
+int		name_check(char *s);
+void	check_valid_chars(t_map *map);
+int		there_is_valid_char(char *s);
+void	remove_free_lines_start(t_map **map);
+void	remove_free_lines_end(t_map **map);
+t_map	*check_valid_map_struct(char *map);
+
 
 
 #endif
