@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-void	free_map(t_map *map)
+void	free_map_struct(t_map *map)
 {
 	t_map	*tmp;
 
@@ -25,6 +25,23 @@ void	free_map(t_map *map)
 		free(map);
 		map = tmp;
 	}
+	map = NULL;
+}
+
+void	free_map(char **map)
+{
+	int i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+	map = NULL;
 }
 
 void	err(char *str)

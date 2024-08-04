@@ -45,7 +45,7 @@ void	ft_lstadd_back(t_map **lst, char *new)
 	node = malloc(sizeof(t_map));
 	if (!node)
 	{
-		free_map(*lst);
+		free_map_struct(*lst);
 		err("malloc error!\n");
 	}
 	node -> next = NULL;
@@ -59,4 +59,11 @@ void	ft_lstadd_back(t_map **lst, char *new)
 			tmp = tmp ->next;
 		tmp->next = node;
 	}
+}
+
+int ft_isspace(int ch)
+{
+	if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\f' || ch == '\r' || ch == '\v')
+		return (1);
+	return (0);
 }

@@ -26,36 +26,34 @@ int	name_check(char *s)
 	return (0);
 }
 
-void	check_borders(t_map *map)
+void	check_valid_chars(t_map *map)
 {
 	int	i;
-	int	flag;
+	t_map *tmp;
 
-	while (map)
+	tmp = map;
+	while (tmp)
 	{
 		i = -1;
-		flag = 0;
-		while (map->line[++i])
+		while (tmp->line[++i])
 		{
-			if (map->line[i] == '1')
-				flag = 1;
-			else if (map->line[i] == '0' || map->line[i] == 'N'
-				|| map->line[i] == 'S' || map->line[i] == 'E'
-				|| map->line[i] == 'W')
-				flag = 0;
-			else if (flag == 0)
-				break ;
+			if (!(ft_isspace(tmp->line[i])
+				|| tmp->line[i] == '1'
+				|| tmp->line[i] == '0'
+				|| tmp->line[i] == 'E'
+				|| tmp->line[i] == 'W'
+				|| tmp->line[i] == 'N'
+				|| tmp->line[i] == 'S'))
+			{
+				free_map_struct(map);
+				err("Invalid map(unacceptable char)!\n");
+			}
 		}
-		if (flag == 0)
-		{
-			free_map(map);
-			err("Invalid map(borders)!\n");
-		}
-		map = map -> next;
+		tmp = tmp -> next;
 	}
 }
 
-t_map	*check_valid_map(char *av)
+t_map	*check_valid_map_struct(char *av)
 {
 	int		fd;
 	char	*line;
@@ -72,14 +70,127 @@ t_map	*check_valid_map(char *av)
 			break ;
 		ft_lstadd_back(&map, line);
 	}
-	check_borders(map);
+	check_valid_chars(map);
 	return (map);
 }
 
-char **init_map(char **av)
+char **lst_to_array(t_map *map_stract)
+{
+	int i;
+	char **map;
+	t_map *tmp;
+	int len;
+	
+	map = malloc(sizeof(char *) * (ft_lstsize(map_stract) + 1));
+	if (!map)
+	{
+		free_map_struct(map_stract);
+		err("Malloc error!\n");
+	}
+	i =-1;
+	len = ft_lstsize(map_stract);
+	while (++i < len)
+	{
+		tmp = map_stract -> next;
+		map[i] = map_stract->line;
+		free(map_stract);
+		map_stract = tmp;
+	}
+	map[i] = NULL;
+	map_stract = NULL;
+	return (map);
+}
+
+char *replace_tab_with_spaces(char **map, int i, int j)
+{
+	char *new_str;
+	int n;
+
+	new_str = malloc(sizeof(char) * (ft_strlen(map[i]) + 5));
+	if (!new_str)
+	{
+		free_map(map);
+		err("Malloc error\n");
+	}
+	n = -1;
+	while (++n < j)
+		new_str[n] = map[i][n];
+	new_str[n++] = ' ';
+	new_str[n++] = ' ';
+	new_str[n++] = ' ';
+	new_str[n] = ' ';
+	while (map[i][++j])
+		new_str[++n] = map[i][j];
+	new_str[++n] = '\0';
+	return (new_str);
+}
+
+void tabs_to_spaces(char **map)
+{
+	int i;
+	int j;
+	char *new;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '\t')
+			{
+				new = replace_tab_with_spaces(map, i, j);
+				free(map[i]);
+				map[i] = new;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void check_borders(char **map)
+{
+	int i;
+	int j;
+	int flag;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		flag = 1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == '1')
+				flag = 1;
+			else if (map[i][j] == '0' || map[i][j] == 'N'
+					|| map[i][j] == 'S' || map[i][j] == 'E'
+					|| map[i][j] == 'W')
+			{
+				flag = 0;
+				if (map[i][j - 1] && ft_isspace(map[i][j - 1]))
+					break ;
+			}
+			else if (flag == 0)
+				break ;
+		}
+		if (!flag)
+		{
+			printf("line: %s\n", map[i]);
+			free_map(map);
+			err("Invalid map(no closing 1 on line)\n");
+		}
+	}
+}
+
+char **init_map(char *av)
 {
 	char **map;
 	
-	map = lst_to_array(check_valid_map(av));
-	
+	map = lst_to_array(check_valid_map_struct(av));
+	tabs_to_spaces(map);
+	check_borders(map);
+	// check_top_bottom(map);
+	return (map);
 }

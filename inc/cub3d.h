@@ -56,15 +56,24 @@ typedef struct s_cub
 
 //utils.c
 int		ft_strlen(char *s);
+int		ft_lstsize(t_map *lst);
 void	ft_lstadd_back(t_map **lst,char *new);
-int	ft_lstsize(t_map *lst);
+int		ft_isspace(int ch);
 
 //err.c
-void err(char *str);
-void free_map(t_map *map);
+void	err(char *str);
+void	free_map_struct(t_map *map);
+void	free_map(char **map);
 
 //valid_map.c
-t_map	*check_valid_map(char *map);
+int		name_check(char *s);
+void	check_valid_chars(t_map *map);
+t_map	*check_valid_map_struct(char *map);
+char	**lst_to_array(t_map *map_stract);
+char *replace_tab_with_spaces(char **map, int i, int j);
+void	tabs_to_spaces(char **map);
+void	check_borders(char **map);
+char	**init_map(char *av);
 
 
 #endif

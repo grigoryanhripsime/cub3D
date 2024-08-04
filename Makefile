@@ -2,7 +2,7 @@ NAME = cub3d
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I mlx #-g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I mlx -g3 -fsanitize=address
 LDFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 HEADERS = inc/cub3d.h inc/get_next_line.h 
@@ -19,8 +19,12 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 all: $(NAME)
 
+# $(NAME): $(OBJS)
+# 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+#for linux
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+	$(CC) $(CFLAGS) $^ -o $@ 
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
