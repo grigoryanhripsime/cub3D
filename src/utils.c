@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:32:47 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/02 20:37:49 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:53:08 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-int	ft_lstsize(t_map *lst)
+int	ft_lstsize(t_lst *lst)
 {
 	int	count;
 
@@ -37,12 +37,12 @@ int	ft_lstsize(t_map *lst)
 	return (count);
 }
 
-void	ft_lstadd_back(t_map **lst, char *new)
+void	ft_lstadd_back(t_lst **lst, char *new)
 {
-	t_map	*node;
-	t_map	*tmp;
+	t_lst	*node;
+	t_lst	*tmp;
 
-	node = malloc(sizeof(t_map));
+	node = malloc(sizeof(t_lst));
 	if (!node)
 	{
 		free_map_struct(*lst);
@@ -61,11 +61,12 @@ void	ft_lstadd_back(t_map **lst, char *new)
 	}
 }
 
-int ft_isspace(int ch)
+int	ft_isspace(int ch)
 {
 	if (!ch)
 		return (0);
-	if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\f' || ch == '\r' || ch == '\v')
+	if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\f'
+		|| ch == '\r' || ch == '\v')
 		return (1);
 	return (0);
 }

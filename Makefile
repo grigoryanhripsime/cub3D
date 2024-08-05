@@ -19,6 +19,9 @@ SRCS_NAME = main.c \
 			valid_map.c \
 			struct_map_check.c \
 			raycasting.c \
+			ft_split.c \
+			type_identifier.c \
+			utils2.c \
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
