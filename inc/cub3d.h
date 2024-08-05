@@ -10,6 +10,16 @@
 # include <string.h>
 # include "../mlx/mlx.h"
 
+# define AROTATE 0.07
+# define MROTATE 0.03
+# define WSPEED 0.15
+# define SSPEED 0.1
+# define ADSPEED 0.12
+
+# define MAP_WIDTH 36
+# define MAP_HEIGHT 11
+# define TILE_SIZE 10
+
 typedef struct s_player
 {
 	double	posX;
@@ -20,6 +30,8 @@ typedef struct s_player
 	double	planeY;
 	int		stepX;
 	int		stepY;
+	int		mapX;
+	int		mapY;
 }	t_player;
 
 typedef struct s_rt
@@ -36,11 +48,23 @@ typedef struct s_rt
 
 }	t_rt;
 
-typedef struct s_vars
+typedef struct s_img
 {
-	void		*mlx;
-	void		*win;
-}	t_vars;
+	int		wd;
+	int		ht;
+	int		endian;
+	int		line_length;
+	int		bits_per_pixel;
+	char	*addr;
+	void	*img;
+}	t_img;
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 
 typedef struct s_map
 {
@@ -48,10 +72,38 @@ typedef struct s_map
 	struct s_map	*next;
 } t_map;
 
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+}	t_mlx;
+
 typedef struct s_cub
 {
-	char **map;
-} t_cub;
+	int				fc;
+	int				rc;
+	int				map_wd;
+	int				map_ht;
+	int				hide_map;
+	char			*npath;
+	char			*spath;
+	char			*wpath;
+	char			*epath;
+	char			**char_map;
+	char			*fcolor;
+	char			*rcolor;
+	t_mlx			mlx;
+	t_player		player;
+	t_img			img;
+	t_img			cdoor;
+	t_img			odoor;
+	t_rt			ray;
+	t_color			f_color;
+	t_color			r_color;
+	t_map			*map;
+	t_img			*gun;
+	t_img			*wall;
+}	t_cub;
 
 
 //utils.c

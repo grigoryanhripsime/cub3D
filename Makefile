@@ -18,6 +18,7 @@ SRCS_NAME = main.c \
 			utils.c \
 			valid_map.c \
 			struct_map_check.c \
+			raycasting.c \
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
@@ -25,12 +26,12 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 all: $(NAME)
 
-# $(NAME): $(OBJS)
-# 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 #for linux
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ 
+# $(NAME): $(OBJS)
+# 	$(CC) $(CFLAGS) $^ -o $@ 
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
