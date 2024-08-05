@@ -18,6 +18,7 @@ SRCS_NAME = main.c \
 			utils.c \
 			valid_map.c \
 			struct_map_check.c \
+			ft_split.c \
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))

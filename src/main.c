@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:29:23 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/02 20:40:55 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:59:29 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // 	//int			i;
 // 	vars = params;
 // 	mlx_destroy_window(vars->mlx, vars->win);
-// 	//free_map(&vars);
+// 	//free_array(&vars);
 // 	exit(0);
 // 	return (0);
 // }
@@ -36,15 +36,15 @@
 int	main(int ac, char **av)
 {
 	t_vars		*vars;
-	char **map;
+	t_cub *cub;
 
 	if (ac != 2)
 		err("Invalid count of arguments\n");
-	map = init_map(av[1]);
+	cub = init_cub(av[1]);
 	(void) vars;
 	(void) ac;
 	// ac = 1;
 	// vars = (t_vars *)malloc(sizeof(t_vars));
 	// open_window(&vars);
-	free_map(map);
+	free_cub(cub);
 }

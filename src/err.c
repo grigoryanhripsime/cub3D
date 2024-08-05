@@ -6,15 +6,15 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:28:17 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/02 20:29:13 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:02:07 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	free_map_struct(t_map *map)
+void	free_map_struct(t_lst *map)
 {
-	t_map	*tmp;
+	t_lst	*tmp;
 
 	if (!map)
 		return ;
@@ -28,7 +28,7 @@ void	free_map_struct(t_map *map)
 	map = NULL;
 }
 
-void	free_map(char **map)
+void	free_array(char **map)
 {
 	int i;
 
