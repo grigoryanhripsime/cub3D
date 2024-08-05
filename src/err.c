@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:28:17 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/05 16:02:07 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:47:52 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_map_struct(t_lst *map)
 
 void	free_array(char **map)
 {
-	int i;
+	int	i;
 
 	if (!map)
 		return ;
@@ -48,4 +48,31 @@ void	err(char *str)
 {
 	write(2, str, ft_strlen(str));
 	exit(1);
+}
+
+void	free_types(t_type *types)
+{
+	if (!types)
+		return ;
+	if (types->NO)
+		free(types->NO);
+	if (types->SO)
+		free(types->SO);
+	if (types->WE)
+		free(types->WE);
+	if (types->EA)
+		free(types->EA);
+	if (types->F)
+		free(types->F);
+	if (types->C)
+		free(types->C);
+	free(types);
+}
+
+void	free_cub(t_cub *cub)
+{
+	free_array(cub->map);
+	cub->map = NULL;
+	free_types(cub->types);
+	cub->types = NULL;
 }

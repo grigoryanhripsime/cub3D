@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:29:23 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/05 18:59:29 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/05 20:25:33 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@
 
 int	main(int ac, char **av)
 {
-	t_vars		*vars;
-	t_cub *cub;
+	t_vars	*vars;
+	t_cub	*cub;
 
 	if (ac != 2)
 		err("Invalid count of arguments\n");
-	cub = init_cub(av[1]);
+	cub = init_game(av[1]);
 	(void) vars;
 	(void) ac;
 	// ac = 1;
