@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/05 20:48:05 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/05 21:27:06 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ typedef struct s_cub
 	t_rt		ray;
 	t_color		f_color;
 	t_color		r_color;
-	t_lst		*map;
+	t_lst		*lst_map;
 	t_img		*gun;
 	t_img		*wall;
 } t_cub;
