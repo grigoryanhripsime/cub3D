@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:53:25 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/05 20:09:25 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:53:52 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,23 @@ int	name_check_file(char *s)
 		&& s[len - 2] == 'u' && s[len - 1] == 'b')
 		return (1);
 	return (0);
+}
+
+int	ft_atoi(char *str)
+{
+	int	i;
+	long	num;
+
+	if (ft_strlen(str) <= 0 && ft_strlen(str) > 3)
+		return (-1);
+	i = 0;
+	num = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = (num * 10) + (str[i] - 48);
+		i++;
+	}
+	if (str[i] || num < 0 || num > 255)
+		return (-1);
+	return (num);
 }

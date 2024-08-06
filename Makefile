@@ -21,7 +21,9 @@ SRCS_NAME = main.c \
 			raycasting.c \
 			ft_split.c \
 			type_identifier.c \
+			type_identifier2.c \
 			utils2.c \
+			ft_split_color.c \
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))

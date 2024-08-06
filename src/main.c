@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:29:23 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/05 21:28:30 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:58:04 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ext(void *params)
 
 	cub = params;
 	mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
-	//free_map(&vars);
 	exit(0);
 	return (0);
 }
