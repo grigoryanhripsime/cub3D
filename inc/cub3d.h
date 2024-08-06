@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 16:10:20 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:20:08 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ typedef struct s_type_identifier
 	char	*SO;
 	char	*WE;
 	char	*EA;
-	char	*F;
-	char	*C;
+	t_color	*F;
+	t_color	*C;
 }	t_type;
 
 typedef struct s_mlx
@@ -153,14 +153,20 @@ char	*ft_strchr(char *s, int c);
 //utils2.c
 char	*ft_strstr(char *str, char *to_find);
 int		ft_strcmp(const char *s1, const char *s2);
+int		name_check_file(char *s);
+int		ft_atoi(char *str);
 
 //ft_split.c
 int		ft_words_count(char *s);
 char	**ft_split(char const *s);
-int		name_check_file(char *s);
+int		ft_words_count_color(char *s, char c);
+char	**ft_split_color(char const *s, char c);
 
-//err.c
+//err_exit.c
 void	err(char *str);
+int		ext(void *params);
+
+//free.c
 void	free_map_struct(t_lst *map);
 void	free_array(char **map);
 void	free_types(t_type *types);
@@ -171,6 +177,8 @@ char	**lst_to_array(t_lst *map_stract, t_type *types);
 char	*replace_tab_with_spaces(char **map, int i, int j, t_cub *cub);
 void	tabs_to_spaces(char **map, t_cub *cub);
 void	check_borders(char **map, t_cub *cub);
+
+//initialization.c
 t_cub	*init_cub(char **map, t_type *types);
 t_cub	*init_game(char *av);
 
@@ -187,5 +195,15 @@ int		type_name(char *to_check, char *with, char *file);
 void	init_type(t_type *types, t_lst *map, char **split);
 void	check_identifier(t_lst **map, t_type *types);
 t_type	*type_identifiers(t_lst **map);
+
+//type_identifier2.c
+t_color	*type_set_color(char *str);
+void	type_error(t_type *types, char **split, t_lst *map);
+
+//open_window.c
+int		create_trgb(int t, int r, int g, int b);
+void	draw_patalok_u_pol(t_cub *cub);
+void	ft_redraw(t_cub *cub);
+void	initing(t_cub *cub);
 
 #endif

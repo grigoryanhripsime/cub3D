@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:53:47 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/05 20:29:35 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:11:52 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ int	type_name(char *to_check, char *with, char *file)
 	if (ft_strcmp(to_check, with))
 		return (0);
 	if (!ft_strcmp(with, "F") || !ft_strcmp(with, "C"))
+	{
+		if (ft_words_count_color(file, ',') != 3)
+			return (0);
 		return (1);
+	}
 	file_len = ft_strlen(file);
 	if (file_len < 4
 		|| !(file[file_len - 4] == '.'
@@ -42,7 +46,6 @@ int	type_name(char *to_check, char *with, char *file)
 
 void	init_type(t_type *types, t_lst *map, char **split)
 {
-	printf("%s\n", split[0]);
 	if (type_name(split[0], "NO", split[1]) && !types->NO)
 		types->NO = split[1];
 	else if (type_name(split[0], "SO", split[1]) && !types->SO)
@@ -52,17 +55,19 @@ void	init_type(t_type *types, t_lst *map, char **split)
 	else if (type_name(split[0], "EA", split[1]) && !types->EA)
 		types->EA = split[1];
 	else if (type_name(split[0], "F", split[1]) && !types->F)
-		types->F = split[1];
-	else if (type_name(split[0], "C", split[1]) && !types->C)
-		types->C = split[1];
-	else
 	{
-		free_types(types);
-		free(split[0]);
-		free(split);
-		free_map_struct(map);
-		err("Type identifier error\n");
+		types->F = type_set_color(split[1]);
+		if (!types->F)
+			type_error(types, split, map);
 	}
+	else if (type_name(split[0], "C", split[1]) && !types->C)
+	{
+		types->C = type_set_color(split[1]);
+		if (!types->C)
+			type_error(types, split, map);
+	}
+	else
+		type_error(types, split, map);
 	free(split[0]);
 	free(split);
 }
@@ -107,11 +112,11 @@ t_type	*type_identifiers(t_lst **map)
 	{
 		remove_free_lines_start(map);
 		if (map && *map && (ft_strstr((*map)->line, "NO")
-			|| ft_strstr((*map)->line, "SO")
-			|| ft_strstr((*map)->line, "WE")
-			|| ft_strstr((*map)->line, "EA")
-			|| ft_strstr((*map)->line, "F")
-			|| ft_strstr((*map)->line, "C")))
+				|| ft_strstr((*map)->line, "SO")
+				|| ft_strstr((*map)->line, "WE")
+				|| ft_strstr((*map)->line, "EA")
+				|| ft_strstr((*map)->line, "F")
+				|| ft_strstr((*map)->line, "C")))
 			check_identifier(map, types);
 		else
 			break ;

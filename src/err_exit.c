@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   err_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 20:29:23 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 16:05:41 by hrigrigo         ###   ########.fr       */
+/*   Created: 2024/08/02 20:28:17 by hrigrigo          #+#    #+#             */
+/*   Updated: 2024/08/06 16:09:29 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	main(int ac, char **av)
+void	err(char *str)
 {
-	t_cub	*cub;
+	write(2, str, ft_strlen(str));
+	exit(1);
+}
 
-	if (ac != 2)
-		err("Invalid count of arguments\n");
-	cub = init_game(av[1]);
-	initing(cub);
-	free_cub(cub);
+int	ext(void *params)
+{
+	t_cub		*cub;
+
+	cub = params;
+	mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+	exit(0);
+	return (0);
 }
