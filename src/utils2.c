@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:53:25 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 15:53:52 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:15:18 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	name_check_file(char *s)
 int	ft_atoi(char *str)
 {
 	int	i;
-	long	num;
+	int	num;
 
 	if (ft_strlen(str) <= 0 && ft_strlen(str) > 3)
 		return (-1);

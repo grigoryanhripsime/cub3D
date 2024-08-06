@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:53:47 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 15:56:09 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:11:52 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	init_type(t_type *types, t_lst *map, char **split)
 	{
 		types->F = type_set_color(split[1]);
 		if (!types->F)
-			type_error(types, split, map);	
+			type_error(types, split, map);
 	}
 	else if (type_name(split[0], "C", split[1]) && !types->C)
 	{
@@ -112,11 +112,11 @@ t_type	*type_identifiers(t_lst **map)
 	{
 		remove_free_lines_start(map);
 		if (map && *map && (ft_strstr((*map)->line, "NO")
-			|| ft_strstr((*map)->line, "SO")
-			|| ft_strstr((*map)->line, "WE")
-			|| ft_strstr((*map)->line, "EA")
-			|| ft_strstr((*map)->line, "F")
-			|| ft_strstr((*map)->line, "C")))
+				|| ft_strstr((*map)->line, "SO")
+				|| ft_strstr((*map)->line, "WE")
+				|| ft_strstr((*map)->line, "EA")
+				|| ft_strstr((*map)->line, "F")
+				|| ft_strstr((*map)->line, "C")))
 			check_identifier(map, types);
 		else
 			break ;

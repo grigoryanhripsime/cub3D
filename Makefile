@@ -14,7 +14,8 @@ OBJS_DIR = objs/
 SRCS_NAME = main.c \
 			get_next_line.c \
 			get_next_line_utils.c \
-			err.c \
+			err_exit.c \
+			free.c \
 			utils.c \
 			valid_map.c \
 			struct_map_check.c \
@@ -24,6 +25,8 @@ SRCS_NAME = main.c \
 			type_identifier2.c \
 			utils2.c \
 			ft_split_color.c \
+			open_window.c \
+			initialization.c \
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))

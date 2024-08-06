@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err.c                                              :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 20:28:17 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/05 19:47:52 by hrigrigo         ###   ########.fr       */
+/*   Created: 2024/08/06 16:08:46 by hrigrigo          #+#    #+#             */
+/*   Updated: 2024/08/06 16:11:01 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ void	free_array(char **map)
 	}
 	free(map);
 	map = NULL;
-}
-
-void	err(char *str)
-{
-	write(2, str, ft_strlen(str));
-	exit(1);
 }
 
 void	free_types(t_type *types)

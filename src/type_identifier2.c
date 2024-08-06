@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:55:26 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 15:56:58 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:12:22 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_color	*type_set_color(char *str)
 {
-	t_color *rgb;
-	char **split;
-	
+	t_color	*rgb;
+	char	**split;
+
 	rgb = malloc(sizeof(t_color));
 	if (!rgb)
 		return (0);
@@ -48,4 +48,3 @@ void	type_error(t_type *types, char **split, t_lst *map)
 	free_map_struct(map);
 	err("Type identifier error\n");
 }
-
