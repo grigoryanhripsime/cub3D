@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/05 21:27:06 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:10:20 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ typedef struct s_rt
 	double	mapY;
 	double	sideDistX;
 	double	sideDistY;
+	double	deltadistX;
+	double	deltadistY;
+	double	wallDist;
 	int		hit;
 	int		side;
 
@@ -99,6 +102,17 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*win;
 }	t_mlx;
+
+typedef struct s_textre
+{
+	int		tex_x;
+	int		tex_y;
+	int		draw_end;
+	int		draw_start;
+	int		line_height;
+	double	step;
+	double	tex_pos;
+}	t_texture;
 
 typedef struct s_cub
 {
