@@ -6,38 +6,47 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:48:55 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/05 20:16:04 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/06 18:03:56 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include "../inc/get_next_line.h"
+
+int	check_char(t_type *types, char c, t_lst *map, int flag)
+{
+	if (ft_isspace(c) || c == '1' || c == '0')
+		return (0);
+	else if ((c == 'E' || c == 'W' || c == 'N' || c == 'S') && flag == 0)
+		return (1);
+	else
+	{
+		free_types(types);
+		free_map_struct(map);
+		err("Invalid map(unacceptable char)!\n");
+	}
+	return (0);
+}
 
 void	check_valid_chars(t_lst *map, t_type *types)
 {
 	int		i;
 	t_lst	*tmp;
+	int		flag;
 
 	tmp = map;
+	flag = 0;
 	while (tmp)
 	{
 		i = -1;
 		while (tmp->line[++i])
-		{
-			if (!(ft_isspace(tmp->line[i])
-					|| tmp->line[i] == '1'
-					|| tmp->line[i] == '0'
-					|| tmp->line[i] == 'E'
-					|| tmp->line[i] == 'W'
-					|| tmp->line[i] == 'N'
-					|| tmp->line[i] == 'S'))
-			{
-				free_types(types);
-				free_map_struct(map);
-				err("Invalid map(unacceptable char)!\n");
-			}
-		}
+			flag += check_char(types, tmp->line[i], map, flag);
 		tmp = tmp -> next;
+	}
+	if (flag != 1)
+	{
+		free_types(types);
+		free_map_struct(map);
+		err("Invalid map(no player)!\n");
 	}
 }
 
@@ -98,29 +107,4 @@ void	remove_free_lines_end(t_lst **map, t_type *types)
 		}
 		tmp = tmp->next;
 	}
-}
-
-t_lst	*read_map(char *av)
-{
-	int		fd;
-	char	*line;
-	t_lst	*map;
-
-	if (!name_check_file(av))
-		err("Invalid map!\n");
-	map = 0;
-	fd = open(av, O_RDONLY);
-	if (fd < 0)
-		err("Invalid map!\n");
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		ft_lstadd_back(&map, line);
-	}
-	close(fd);
-	if (!map)
-		err("Invalid map\n");
-	return (map);
 }

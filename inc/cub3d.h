@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 16:14:25 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/06 18:02:51 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,13 +167,14 @@ void	check_borders(char **map, t_cub *cub);
 //initialization.c
 t_cub	*init_cub(char **map, t_type *types);
 t_cub	*init_game(char *av);
+t_lst	*read_map(char *av);
 
 //struct_map_check.c
+int		check_char(t_type *types, char c, t_lst *map, int flag);
 void	check_valid_chars(t_lst *map, t_type *types);
 int		there_is_valid_char(char *s);
 void	remove_free_lines_start(t_lst **map);
 void	remove_free_lines_end(t_lst **map, t_type *types);
-t_lst	*read_map(char *av);
 
 //type_identifier.c
 void	init_type_struct(t_type *types);
