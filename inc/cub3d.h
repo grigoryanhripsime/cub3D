@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/07 12:30:17 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:38:31 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,10 @@ typedef struct s_rt
 	double	cameraX;
 	double	rayDirX;
 	double	rayDirY;
-	double	mapX;
-	double	mapY;
 	double	sideDistX;
 	double	sideDistY;
-	double	deltadistX;
-	double	deltadistY;
+	double	deltaDistX;
+	double	deltaDistY;
 	double	wallDist;
 	int		hit;
 	int		side;
@@ -105,13 +103,13 @@ typedef struct s_mlx
 
 typedef struct s_textre
 {
-	int		tex_x;
-	int		tex_y;
-	int		draw_end;
-	int		draw_start;
-	int		line_height;
+	int		texX;
+	int		texY;
+	int		drawEnd;
+	int		drawStart;
+	int		lineHeight;
 	double	step;
-	double	tex_pos;
+	double	texPos;
 }	t_texture;
 
 typedef struct s_cub
@@ -140,6 +138,7 @@ typedef struct s_cub
 	t_lst		*lst_map;
 	t_img		*gun;
 	t_img		*wall;
+	void		*NO;
 }	t_cub;
 
 //utils.c
@@ -214,7 +213,6 @@ void	ray_pos(t_cub *vars, int w);
 void	step_dir(t_cub *vars);
 
 //raycasting2.c
-void	dda_algorithm(t_cub *vars);
-void	raycasting(t_cub *vars);
+void	raycast(t_cub *cub);
 
 #endif
