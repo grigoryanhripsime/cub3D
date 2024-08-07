@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/07 20:35:47 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/07 21:50:24 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void get_player_position(t_cub *cub)
 
 void init_cub_vars(t_cub *cub)
 {
-	cub->player.dirX = 1.0;
+	cub->player.dirX = -1.0;
 	cub->player.dirY = 0.0;
 	cub->player.planeX = 0.0;
 	cub->player.planeY = 0.66;
@@ -92,7 +92,6 @@ void raycast(t_cub *cub)
 	t_texture tex;
 	double	wallX;
 	
-	get_player_position(cub);
 	init_cub_vars(cub);
 	// while (1)
 	// {
@@ -149,7 +148,7 @@ void raycast(t_cub *cub)
 				if(cub->map[cub->player.mapX][cub->player.mapY] == '1')
 					cub->ray.hit = 1;
 			}
-			printf("1 ->  %f | 2 -> %d\n", cub->ray.wallDist, tex.lineHeight);
+			//printf("1 ->  %f | 2 -> %d\n", cub->ray.wallDist, tex.lineHeight);
 
 			if(cub->ray.side == 0)
 				cub->ray.wallDist = (cub->ray.sideDistX - cub->ray.deltaDistX);
@@ -179,7 +178,7 @@ void raycast(t_cub *cub)
 			tex.step = 1.0 * texHeight / tex.lineHeight;
 			tex.texPos = (tex.drawStart - cub->map_ht / 2 + tex.lineHeight / 2) * tex.step;
 			
-			printf("start -> %d  |  end -> %d\n", tex.drawStart, tex.drawEnd);
+			//printf("start -> %d  |  end -> %d\n", tex.drawStart, tex.drawEnd);
 			for(int y = tex.drawStart; y < tex.drawEnd; y++)
 			{
 				tex.texY = (int)tex.texPos & (texHeight - 1);

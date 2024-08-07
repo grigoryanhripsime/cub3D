@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/07 19:38:31 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/07 21:55:54 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,24 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <string.h>
+# include <stdbool.h>
 # include "../mlx/mlx.h"
+
+# define ESC 53
+# define M 46
+# define E 14
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define LARROW 123
+# define RARROW 124
 
 # define AROTATE 0.07
 # define MROTATE 0.03
 # define WSPEED 0.15
 # define SSPEED 0.1
-# define ADSPEED 0.12
+# define ROTSPEED 0.12
 
 # define MAP_WIDTH 36
 # define MAP_HEIGHT 11
@@ -202,17 +213,14 @@ void	type_error(t_type *types, char **split, t_lst *map);
 //open_window.c
 int		create_trgb(int t, int r, int g, int b);
 void	draw_patalok_u_pol(t_cub *cub);
-void	ft_redraw(t_cub *cub);
+int	ft_redraw(t_cub *cub);
 void	initing(t_cub *cub);
 
 //raycasting.c
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	calc_draw_ends(t_cub *vars, t_texture *tex);
-void	draw_texture(t_cub *vars, int x, int tex_x);
-void	ray_pos(t_cub *vars, int w);
-void	step_dir(t_cub *vars);
 
 //raycasting2.c
 void	raycast(t_cub *cub);
+void get_player_position(t_cub *cub);
 
 #endif
