@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 18:07:19 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/07 12:30:17 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,20 +116,20 @@ typedef struct s_textre
 
 typedef struct s_cub
 {
-	char	**map;
-	t_type	*types;
-	int		fc;
-	int		rc;
-	int		map_wd;
-	int		map_ht;
-	int		hide_map;
-	char	*npath;
-	char	*spath;
-	char	*wpath;
-	char	*epath;
-	char	*fcolor;
-	char	*rcolor;
-	t_mlx	mlx;
+	char		**map;
+	t_type		*types;
+	int			fc;
+	int			rc;
+	int			map_wd;
+	int			map_ht;
+	int			hide_map;
+	char		*npath;
+	char		*spath;
+	char		*wpath;
+	char		*epath;
+	char		*fcolor;
+	char		*rcolor;
+	t_mlx		mlx;
 	t_player	player;
 	t_img		img;
 	t_img		cdoor;
@@ -140,8 +140,7 @@ typedef struct s_cub
 	t_lst		*lst_map;
 	t_img		*gun;
 	t_img		*wall;
-} t_cub;
-
+}	t_cub;
 
 //utils.c
 int		ft_strlen(char *s);
@@ -206,5 +205,16 @@ int		create_trgb(int t, int r, int g, int b);
 void	draw_patalok_u_pol(t_cub *cub);
 void	ft_redraw(t_cub *cub);
 void	initing(t_cub *cub);
+
+//raycasting.c
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	calc_draw_ends(t_cub *vars, t_texture *tex);
+void	draw_texture(t_cub *vars, int x, int tex_x);
+void	ray_pos(t_cub *vars, int w);
+void	step_dir(t_cub *vars);
+
+//raycasting2.c
+void	dda_algorithm(t_cub *vars);
+void	raycasting(t_cub *vars);
 
 #endif

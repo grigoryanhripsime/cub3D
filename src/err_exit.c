@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:28:17 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 16:09:29 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/07 12:23:46 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	err(char *str)
 {
 	write(2, str, ft_strlen(str));
+	// system("leaks cub3D");
 	exit(1);
 }
 

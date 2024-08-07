@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:53:47 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 16:11:52 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/07 12:21:52 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	type_name(char *to_check, char *with, char *file)
 		return (0);
 	if (!ft_strcmp(with, "F") || !ft_strcmp(with, "C"))
 	{
-		if (ft_words_count_color(file, ',') != 3)
+		if (ft_words_count_color(file, ',') != 3 || ft_strstr(file, ",,"))
 			return (0);
 		return (1);
 	}

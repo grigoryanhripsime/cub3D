@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:55:26 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 16:12:22 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/06 19:18:58 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,12 @@ t_color	*type_set_color(char *str)
 	rgb->g = ft_atoi(split[1]);
 	rgb->b = ft_atoi(split[2]);
 	free_array(split);
-	printf("r = %d, g = %d, b = %d\n", rgb->r, rgb->g, rgb->b);
+	free(str);
 	if (rgb->r < 0 || rgb->g < 0 || rgb->b < 0)
 	{
 		free(rgb);
 		return (0);
 	}
-	free(str);
 	return (rgb);
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
+/*   Updated: 2024/08/07 12:27:48 by hrigrigo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
@@ -24,8 +36,8 @@ void	calc_draw_ends(t_cub *vars, t_texture *tex)
 
 void	draw_texture(t_cub *vars, int x, int tex_x)
 {
-	t_texture			tex;
-	int				y;
+	t_texture	tex;
+	int			y;
 
 	tex_x = 0;
 	if (vars->ray.wallDist < 0.000001)
@@ -85,49 +97,4 @@ void	step_dir(t_cub *vars)
 		vars->ray.sideDistY = (vars->player.mapY + 1.0 - vars->player.posY)
 			* vars->ray.deltadistY;
 	}
-}
-
-void	dda_algorithm(t_cub *vars)
-{
-	while (vars->ray.hit == 0)
-	{
-		if (vars->ray.sideDistX < vars->ray.sideDistY)
-		{
-			vars->ray.sideDistX += vars->ray.deltadistX;
-			vars->player.mapX += vars->player.stepX;
-			vars->ray.side = 0;
-		}
-		else
-		{
-			vars->ray.sideDistY += vars->ray.deltadistY;
-			vars->player.mapY += vars->player.stepY;
-			vars->ray.side = 1;
-		}
-		if (vars->map[vars->player.mapX][vars->player.mapY] == '1')
-			vars->ray.hit = 1;
-		else if (vars->map[vars->player.mapX][vars->player.mapY] == 'D')
-			vars->ray.hit = 2;
-		else if (vars->map[vars->player.mapX][vars->player.mapY] == 'O')
-			vars->ray.hit = 3;
-	}
-	if (vars->ray.side == 0)
-		vars->ray.wallDist = (vars->ray.sideDistX - vars->ray.deltadistX);
-	else
-		vars->ray.wallDist = (vars->ray.sideDistY - vars->ray.deltadistY);
-}
-
-void	raycasting(t_cub *vars)
-{
-	int		i;
-
-	//draw_floor(vars);
-	i = -1;
-	while (++i <= vars->map_wd)
-	{
-		ray_pos(vars, i);
-		step_dir(vars);
-		vars->ray.hit = 0;
-		dda_algorithm(vars);
-	}
-	mlx_put_image_to_window(vars->mlx.mlx, vars->mlx.win, vars->img.img, 0, 0);
 }

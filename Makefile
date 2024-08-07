@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I mlx -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I mlx #-g3 -fsanitize=address
 LDFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 HEADERS = inc/cub3d.h inc/get_next_line.h 
@@ -20,6 +20,7 @@ SRCS_NAME = main.c \
 			valid_map.c \
 			struct_map_check.c \
 			raycasting.c \
+			raycasting2.c \
 			ft_split.c \
 			type_identifier.c \
 			type_identifier2.c \
