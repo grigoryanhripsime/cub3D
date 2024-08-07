@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:04:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 16:11:14 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:47:38 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	initing(t_cub *cub)
 {
 	cub->map_wd = 1080;
 	cub->map_ht = 720;
-	cub->fc = create_trgb(0, 135, 67, 94);
-	cub->rc = create_trgb(0, 15, 21, 190);
+	cub->fc = create_trgb(0, cub->types->F->r, cub->types->F->g, cub->types->F->b);
+	cub->rc = create_trgb(0, cub->types->C->r, cub->types->C->g, cub->types->C->b);
 	cub->mlx.mlx = mlx_init();
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx,
 			cub->map_wd, cub->map_ht, "cub3D");

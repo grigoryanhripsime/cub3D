@@ -1,9 +1,9 @@
   NO    ./path_to_the_north_texture.xpm
 
-		F 235,255,31
-		C 78,78,78
+		F 24,133,216
+		C 147,202,243
      WE 						./path_to_the_south_texture.xpm
-     SO 											./path_to_the_south_texture.xpm
+     SO 				./path_to_the_south_texture.xpm
 
 
 	 EA 				./path_to_the_south_texture.xpm
