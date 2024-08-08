@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:29:23 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/07 21:38:53 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:11:44 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		err("Invalid count of arguments\n");
 	cub = init_game(av[1]);
-	initing(cub);
+	init_mlx(cub);
 	free_cub(cub);
 }

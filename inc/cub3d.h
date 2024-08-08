@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/07 21:55:54 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:18:25 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@
 # define MAP_WIDTH 36
 # define MAP_HEIGHT 11
 # define TILE_SIZE 10
+
+# define screenWidth 640
+# define screenHeight 480
+# define texWidth 64 // must be power of two
+# define texHeight 64 // must be power of two
+# define mapWidth 24
+# define mapHeight 24
 
 typedef struct s_player
 {
@@ -191,6 +198,8 @@ void	check_borders(char **map, t_cub *cub);
 t_cub	*init_cub(char **map, t_type *types);
 t_cub	*init_game(char *av);
 t_lst	*read_map(char *av);
+void	get_player_position(t_cub *cub);
+void	init_mlx(t_cub *cub);
 
 //struct_map_check.c
 int		check_char(t_type *types, char c, t_lst *map, int flag);
@@ -213,14 +222,30 @@ void	type_error(t_type *types, char **split, t_lst *map);
 //open_window.c
 int		create_trgb(int t, int r, int g, int b);
 void	draw_patalok_u_pol(t_cub *cub);
-int	ft_redraw(t_cub *cub);
-void	initing(t_cub *cub);
-
-//raycasting.c
+int		ft_redraw(t_cub *cub);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
+//movements.c
+void	move_forward(t_cub *cub);
+void	move_back(t_cub *cub);
+void	move_left(t_cub *cub);
+void	move_right(t_cub *cub);
+int		moveing(int key, t_cub *cub);
+
+//raycasting.c
+void raycasting(t_cub *cub);
+
 //raycasting2.c
-void	raycast(t_cub *cub);
-void get_player_position(t_cub *cub);
+void	set_ray(t_cub *cub, int x);
+void	check_ray(t_cub *cub);
+void	find_wall(t_cub *cub);
+t_texture	set_texture(t_cub *cub);
+void	draw_wall(t_cub *cub, t_texture tex, int x);
+
+
+
+
+
+
 
 #endif

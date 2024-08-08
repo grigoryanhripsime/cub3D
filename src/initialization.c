@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 18:04:00 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:42:36 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,50 @@ t_cub	*init_game(char *av)
 	}
 	map = lst_to_array(map_struct, types);
 	return (init_cub(map, types));
+}
+
+void	get_player_position(t_cub *cub)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (cub->map[i])
+	{
+		j = 0;
+		while (cub->map[i][j])
+		{
+			if (cub->map[i][j] == 'N' || cub->map[i][j] == 'S'
+				|| cub->map[i][j] == 'W' || cub->map[i][j] == 'E')
+			{
+				cub->player.posX = i;
+				cub->player.posY = j;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	init_mlx(t_cub *cub)
+{
+	cub->map_wd = 1080;
+	cub->map_ht = 720;
+	cub->player.dirX = -1.0;
+	cub->player.dirY = 0.0;
+	cub->player.planeX = 0.0;
+	cub->player.planeY = 0.66;
+	get_player_position(cub);
+	cub->fc = create_trgb(0, cub->types->F->r,
+			cub->types->F->g, cub->types->F->b);
+	cub->rc = create_trgb(0, cub->types->C->r,
+			cub->types->C->g, cub->types->C->b);
+	cub->mlx.mlx = mlx_init();
+	cub->mlx.win = mlx_new_window(cub->mlx.mlx,
+			cub->map_wd, cub->map_ht, "cub3D");
+	//ft_redraw(cub);
+	mlx_hook(cub->mlx.win, 2, 0, &moveing, cub);
+	mlx_loop_hook(cub->mlx.mlx, &ft_redraw, cub);
+	mlx_hook(cub->mlx.win, 17, 0, ext, cub);
+	mlx_loop(cub->mlx.mlx);
 }

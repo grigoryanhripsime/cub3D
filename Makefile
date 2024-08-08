@@ -28,6 +28,7 @@ SRCS_NAME = main.c \
 			ft_split_color.c \
 			open_window.c \
 			initialization.c \
+			movements.c \
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
