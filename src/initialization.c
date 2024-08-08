@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 14:42:36 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:26:49 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,19 @@ void	get_player_position(t_cub *cub)
 	}
 }
 
+int mouse_rot(int x, int y, t_cub *cub)
+{
+	static int	past_view;
+
+	y = 0;
+	if (x < past_view)
+		rot_right(cub);
+	else if (x > past_view)
+		rot_left(cub);
+	past_view = x;
+	return (0);	
+}
+
 void	init_mlx(t_cub *cub)
 {
 	cub->map_wd = 1080;
@@ -122,6 +135,7 @@ void	init_mlx(t_cub *cub)
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx,
 			cub->map_wd, cub->map_ht, "cub3D");
 	//ft_redraw(cub);
+	mlx_hook(cub->mlx.win, 6, 0, &mouse_rot, cub);
 	mlx_hook(cub->mlx.win, 2, 0, &moveing, cub);
 	mlx_loop_hook(cub->mlx.mlx, &ft_redraw, cub);
 	mlx_hook(cub->mlx.win, 17, 0, ext, cub);
