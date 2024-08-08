@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:21:11 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 17:59:15 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/08 21:16:08 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void	move_back(t_cub *cub)
 	int	x;
 	int	y;
 
-	x = (int)(cub->player.posX - cub->player.dirX * SSPEED);
+	x = (int)(cub->player.posX - cub->player.dirX * WSPEED);
 	y = (int)(cub->player.posY);
 	if (cub->map[x][y] != '1')
-		cub->player.posX -= cub->player.dirX * SSPEED;
+		cub->player.posX -= cub->player.dirX * WSPEED;
 	x = (int)(cub->player.posX);
-	y = (int)(cub->player.posY - cub->player.dirY * SSPEED);
+	y = (int)(cub->player.posY - cub->player.dirY * WSPEED);
 	if (cub->map[x][y] != '1')
-		cub->player.posY -= cub->player.dirY * SSPEED;
+		cub->player.posY -= cub->player.dirY * WSPEED;
 }
 
 void	move_left(t_cub *cub)
@@ -92,7 +92,6 @@ void	rot_right(t_cub *cub)
 {
 	double	tmp;
 
-	printf("posX -> %f | posY -> %f\n", cub->player.posX, cub->player.posY);
 	tmp = cub->player.dirX;
 	cub->player.dirX = cub->player.dirX * cos(ROTSPEED)
 		- cub->player.dirY * sin(ROTSPEED);

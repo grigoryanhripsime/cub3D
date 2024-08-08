@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 18:16:14 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 20:46:28 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,12 @@ void	draw_wall(t_cub *cub, t_tex_place tex, int x)
 {
 	int	y;
 
-	y = -1;
+	y = tex.drawStart;
 	while (++y < tex.drawEnd)
 	{
 		tex.texY = (int)tex.texPos & (texHeight - 1);
 		tex.texPos += tex.step;
-		my_mlx_pixel_put(&cub->img, x, y, create_trgb(0, 182, 165, 17));
+		my_mlx_pixel_put(&cub->img, x, y, my_mlx_color_taker(choose_texture(cub), tex.texX, tex.texY));
 		// draw_image_pixel_by_pixel(cub, x, y);
 	}
 }

@@ -3,42 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 18:43:45 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:46:47 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-// t_img	*choose_texture(t_cub *vars)
-// {
-// 	if (vars->ray.hit == 2)
-// 		return (&vars->cdoor);
-// 	else if (vars->ray.hit == 3)
-// 		return (&vars->odoor);
-// 	else if (vars->ray.side == 1 && vars->ray.rayDirY <= 0)
-// 		return (vars->wall);
-// 	else if (vars->ray.side == 0 && vars->ray.rayDirX > 0)
-// 		return (vars->wall + 1);
-// 	else if (vars->ray.side == 0 && vars->ray.rayDirX <= 0)
-// 		return (vars->wall + 2);
-// 	return (vars->wall + 3);
-// }
 
-// unsigned int	my_mlx_color_taker(t_img *data, int j, int i)
-// {
-// 	char			*dst;
+t_img	*choose_texture(t_cub *vars)
+{
+	// if (vars->ray.hit == 2)
+	// 	return (&vars->cdoor);
+	// else if (vars->ray.hit == 3)
+	// 	return (&vars->odoor);
+	// else
+	if (vars->ray.side == 1 && vars->ray.rayDirY <= 0)
+		return (vars->NO);
+	else if (vars->ray.side == 0 && vars->ray.rayDirX > 0)
+		return (vars->SO);
+	else if (vars->ray.side == 0 && vars->ray.rayDirX <= 0)
+		return (vars->EA);
+	return (vars->WE);
+}
 
-// 	if (j >= 0 && j < data->wd && i >= 0 && i < data->ht)
-// 	{
-// 		dst = data->addr + (i * data->line_length
-// 				+ j * (data->bits_per_pixel / 8));
-// 		return (*(unsigned int *)dst);
-// 	}
-// 	return (0);
-// }
+unsigned int	my_mlx_color_taker(t_img *data, int j, int i)
+{
+	char			*dst;
+
+	if (j >= 0 && j < data->wd && i >= 0 && i < data->ht)
+	{
+		dst = data->addr + (i * data->line_length
+				+ j * (data->bits_per_pixel / 8));
+		return (*(unsigned int *)dst);
+	}
+	return (0);
+}
 
 void	raycasting(t_cub *cub)
 {

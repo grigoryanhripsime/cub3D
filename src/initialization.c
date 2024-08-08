@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 18:43:36 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 20:28:43 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,18 +110,42 @@ void init_textutes(t_cub *cub)
 	int	height;
 	int	width;
 	
-	height = 64;
-	width = 64;
-	cub->textures.NO = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->NO, &width, &height);
-	cub->textures.SO = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->SO, &width, &height);
-	cub->textures.WE = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->WE, &width, &height);
-	cub->textures.EA = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->EA, &width, &height);
-	if (!cub->textures.NO || !cub->textures.SO || !cub->textures.WE || !cub->textures.EA)
+	height = 100;
+	width = 100;
+	cub->SO = (t_img *)malloc(sizeof(t_img));
+	cub->NO = (t_img *)malloc(sizeof(t_img));
+	cub->WE = (t_img *)malloc(sizeof(t_img));
+	cub->EA = (t_img *)malloc(sizeof(t_img));
+	cub->SO->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->SO, &width, &height);
+	cub->NO->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->NO, &width, &height);
+	cub->WE->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->WE, &width, &height);
+	cub->EA->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->EA, &width, &height);
+	cub->SO->wd = width;
+	cub->NO->wd = width;
+	cub->WE->wd = width;
+	cub->EA->wd = width;
+	cub->SO->ht = height;
+	cub->NO->ht = height;
+	cub->WE->ht = height;
+	cub->EA->ht = height;
+	cub->SO->addr = mlx_get_data_addr(cub->SO->img,
+				&cub->SO->bits_per_pixel, &cub->SO->line_length,
+				&cub->SO->endian);
+	cub->NO->addr = mlx_get_data_addr(cub->NO->img,
+				&cub->NO->bits_per_pixel, &cub->NO->line_length,
+				&cub->NO->endian);
+	cub->WE->addr = mlx_get_data_addr(cub->WE->img,
+				&cub->WE->bits_per_pixel, &cub->WE->line_length,
+				&cub->WE->endian);
+	cub->EA->addr = mlx_get_data_addr(cub->EA->img,
+				&cub->EA->bits_per_pixel, &cub->EA->line_length,
+				&cub->EA->endian);
+	if (!cub->NO->img || !cub->SO->img || !cub->WE->img || !cub->EA->img)
 	{
-		mlx_destroy_image(cub->mlx.mlx, cub->textures.NO);
-		mlx_destroy_image(cub->mlx.mlx, cub->textures.SO);
-		mlx_destroy_image(cub->mlx.mlx, cub->textures.WE);
-		mlx_destroy_image(cub->mlx.mlx, cub->textures.EA);
+		// mlx_destroy_image(cub->mlx.mlx, cub->NO->img);
+		// mlx_destroy_image(cub->mlx.mlx, cub->SO->img);
+		// mlx_destroy_image(cub->mlx.mlx, cub->WE->img);
+		// mlx_destroy_image(cub->mlx.mlx, cub->EA->img);
 		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
 		free_cub(cub);
 		err("Coudn't open wall textures\n");
@@ -158,7 +182,6 @@ void	init_mlx(t_cub *cub)
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx,
 			cub->map_wd, cub->map_ht, "cub3D");
 	init_textutes(cub);
-	//ft_redraw(cub);
 	mlx_hook(cub->mlx.win, 6, 0, &mouse_rot, cub);
 	mlx_hook(cub->mlx.win, 2, 0, &moveing, cub);
 	mlx_loop_hook(cub->mlx.mlx, &ft_redraw, cub);

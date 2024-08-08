@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 18:44:03 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:28:56 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,10 @@ typedef struct s_cub
 	t_color		r_color;
 	t_lst		*lst_map;
 	t_img		*gun;
-	t_img		*wall;
+	t_img		*SO;
+	t_img		*NO;
+	t_img		*EA;
+	t_img		*WE;
 	t_textures	textures;
 }	t_cub;
 
@@ -251,8 +254,8 @@ void	check_ray(t_cub *cub);
 void	find_wall(t_cub *cub);
 t_tex_place	set_texture(t_cub *cub);
 void	draw_wall(t_cub *cub, t_tex_place tex, int x);
-
-
+unsigned int	my_mlx_color_taker(t_img *data, int j, int i);
+t_img	*choose_texture(t_cub *vars);
 
 
 
