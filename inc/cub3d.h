@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 18:16:57 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:44:03 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define MROTATE 0.03
 # define WSPEED 0.15
 # define SSPEED 0.1
-# define ROTSPEED 0.12
+# define ROTSPEED 0.06
 
 # define MAP_WIDTH 36
 # define MAP_HEIGHT 11
@@ -239,6 +239,8 @@ void	move_back(t_cub *cub);
 void	move_left(t_cub *cub);
 void	move_right(t_cub *cub);
 int		moveing(int key, t_cub *cub);
+void	rot_left(t_cub *cub);
+void	rot_right(t_cub *cub);
 
 //raycasting.c
 void	raycasting(t_cub *cub);

@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 18:07:27 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:43:36 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,19 @@ void init_textutes(t_cub *cub)
 	}
 }
 
+int mouse_rot(int x, int y, t_cub *cub)
+{
+	static int	past_view;
+
+	y = 0;
+	if (x < past_view)
+		rot_right(cub);
+	else if (x > past_view)
+		rot_left(cub);
+	past_view = x;
+	return (0);	
+}
+
 void	init_mlx(t_cub *cub)
 {
 	cub->map_wd = 1080;
@@ -146,6 +159,7 @@ void	init_mlx(t_cub *cub)
 			cub->map_wd, cub->map_ht, "cub3D");
 	init_textutes(cub);
 	//ft_redraw(cub);
+	mlx_hook(cub->mlx.win, 6, 0, &mouse_rot, cub);
 	mlx_hook(cub->mlx.win, 2, 0, &moveing, cub);
 	mlx_loop_hook(cub->mlx.mlx, &ft_redraw, cub);
 	mlx_hook(cub->mlx.win, 17, 0, ext, cub);
