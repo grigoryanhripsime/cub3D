@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 15:19:09 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:22:07 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 
 void	raycasting(t_cub *cub)
 {
-	t_texture	tex;
+	t_tex_place	tex;
 	int			x;
 
 	x = -1;

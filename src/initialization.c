@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 14:42:36 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:07:27 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,29 @@ void	get_player_position(t_cub *cub)
 	}
 }
 
+void init_textutes(t_cub *cub)
+{
+	int	height;
+	int	width;
+	
+	height = 64;
+	width = 64;
+	cub->textures.NO = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->NO, &width, &height);
+	cub->textures.SO = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->SO, &width, &height);
+	cub->textures.WE = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->WE, &width, &height);
+	cub->textures.EA = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->EA, &width, &height);
+	if (!cub->textures.NO || !cub->textures.SO || !cub->textures.WE || !cub->textures.EA)
+	{
+		mlx_destroy_image(cub->mlx.mlx, cub->textures.NO);
+		mlx_destroy_image(cub->mlx.mlx, cub->textures.SO);
+		mlx_destroy_image(cub->mlx.mlx, cub->textures.WE);
+		mlx_destroy_image(cub->mlx.mlx, cub->textures.EA);
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+		free_cub(cub);
+		err("Coudn't open wall textures\n");
+	}
+}
+
 void	init_mlx(t_cub *cub)
 {
 	cub->map_wd = 1080;
@@ -121,6 +144,7 @@ void	init_mlx(t_cub *cub)
 	cub->mlx.mlx = mlx_init();
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx,
 			cub->map_wd, cub->map_ht, "cub3D");
+	init_textutes(cub);
 	//ft_redraw(cub);
 	mlx_hook(cub->mlx.win, 2, 0, &moveing, cub);
 	mlx_loop_hook(cub->mlx.mlx, &ft_redraw, cub);

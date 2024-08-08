@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:04:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 15:19:20 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:04:25 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	ft_redraw(t_cub *cub)
 	raycasting(cub);
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->img.img, 0, 0);
 	mlx_destroy_image(cub->mlx.mlx, cub->img.img);
-	//printf("posX -> %f | posY -> %f\n", cub->player.posX, cub->player.posY);
 	return (0);
 }
 

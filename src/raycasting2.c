@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 15:26:13 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:16:14 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ void	find_wall(t_cub *cub)
 	}
 }
 
-t_texture	set_texture(t_cub *cub)
+t_tex_place	set_texture(t_cub *cub)
 {
 	double		wallX;
-	t_texture	tex;
+	t_tex_place	tex;
 
 	tex.lineHeight = (int)(cub->map_ht / cub->ray.wallDist);
 	tex.drawStart = -tex.lineHeight / 2 + cub->map_ht / 2;
@@ -110,7 +110,21 @@ t_texture	set_texture(t_cub *cub)
 	return (tex);
 }
 
-void	draw_wall(t_cub *cub, t_texture tex, int x)
+void draw_image_pixel_by_pixel(t_cub *cub, int x, int y)
+{
+    int color;
+	int size_line = (64 * cub->img.bits_per_pixel) / 8;
+	char *img_data = mlx_get_data_addr(cub->textures.NO, &(cub->img.bits_per_pixel), &size_line, &(cub->img.endian));
+    
+            // Get the color of the pixel at (x, y)
+            int pixel_index = y * size_line + x * (cub->img.bits_per_pixel / 8);
+            color = *(int *)(img_data + pixel_index);
+            
+            // Put the pixel on the screen
+            mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, x, y, color);
+}
+
+void	draw_wall(t_cub *cub, t_tex_place tex, int x)
 {
 	int	y;
 
@@ -120,5 +134,6 @@ void	draw_wall(t_cub *cub, t_texture tex, int x)
 		tex.texY = (int)tex.texPos & (texHeight - 1);
 		tex.texPos += tex.step;
 		my_mlx_pixel_put(&cub->img, x, y, create_trgb(0, 182, 165, 17));
+		// draw_image_pixel_by_pixel(cub, x, y);
 	}
 }

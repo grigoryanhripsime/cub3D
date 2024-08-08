@@ -6,11 +6,19 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:29:23 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 14:11:44 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:33:36 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+void	minimap(t_cub *cub)
+{
+	void *mlx = mlx_init();
+	void *window = mlx_new_window(mlx, 200, 200, "Minimap");
+	
+	
+}
 
 int	main(int ac, char **av)
 {
@@ -20,5 +28,6 @@ int	main(int ac, char **av)
 		err("Invalid count of arguments\n");
 	cub = init_game(av[1]);
 	init_mlx(cub);
+	minimap(cub);
 	free_cub(cub);
 }

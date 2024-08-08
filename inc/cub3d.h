@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 15:18:25 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:16:57 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ typedef struct s_mlx
 	void	*win;
 }	t_mlx;
 
-typedef struct s_textre
+typedef struct s_tex_place
 {
 	int		texX;
 	int		texY;
@@ -128,7 +128,15 @@ typedef struct s_textre
 	int		lineHeight;
 	double	step;
 	double	texPos;
-}	t_texture;
+}	t_tex_place;
+
+typedef struct s_textures
+{
+	void	*NO;
+	void	*SO;
+	void	*WE;
+	void	*EA;
+} t_textures;
 
 typedef struct s_cub
 {
@@ -156,7 +164,7 @@ typedef struct s_cub
 	t_lst		*lst_map;
 	t_img		*gun;
 	t_img		*wall;
-	void		*NO;
+	t_textures	textures;
 }	t_cub;
 
 //utils.c
@@ -233,14 +241,14 @@ void	move_right(t_cub *cub);
 int		moveing(int key, t_cub *cub);
 
 //raycasting.c
-void raycasting(t_cub *cub);
+void	raycasting(t_cub *cub);
 
 //raycasting2.c
 void	set_ray(t_cub *cub, int x);
 void	check_ray(t_cub *cub);
 void	find_wall(t_cub *cub);
-t_texture	set_texture(t_cub *cub);
-void	draw_wall(t_cub *cub, t_texture tex, int x);
+t_tex_place	set_texture(t_cub *cub);
+void	draw_wall(t_cub *cub, t_tex_place tex, int x);
 
 
 

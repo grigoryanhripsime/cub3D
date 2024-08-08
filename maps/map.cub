@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture.xpm
-WE ./path_to_the_south_texture.xpm
-SO ./path_to_the_south_texture.xpm
-EA ./path_to_the_south_texture.xpm
+NO ./textures/bluestone.xpm
+SO ./textures/greystone.xpm
+WE ./textures/eagle.xpm
+EA ./textures/redbrick.xpm
 F 24,133,216
 C 147,202,243
 
