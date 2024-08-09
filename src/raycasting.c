@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 19:21:19 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 20:02:57 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 t_img	choose_texture(t_cub *vars)
 {
-	if (vars->ray.side == 1 && vars->ray.rayDirY <= 0)
+	if (vars->ray.hit == 2)
+		return (vars->closeD);
+	if (vars->ray.hit == 3)
+		return (vars->openD);
+	else if (vars->ray.side == 1 && vars->ray.rayDirY <= 0)
 		return (vars->NO);
 	else if (vars->ray.side == 0 && vars->ray.rayDirX > 0)
 		return (vars->SO);

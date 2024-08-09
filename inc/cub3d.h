@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 19:25:29 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:58:43 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,8 @@ typedef struct s_cub
 	t_mlx		mlx;
 	t_player	player;
 	t_img		img;
-	t_img		cdoor;
-	t_img		odoor;
+	t_img		closeD;
+	t_img		openD;
 	t_rt		ray;
 	t_color		f_color;
 	t_color		r_color;
