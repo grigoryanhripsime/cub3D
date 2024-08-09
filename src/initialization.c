@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 14:25:41 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:41:49 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,30 @@ t_cub	*init_game(char *av)
 	return (init_cub(map, types));
 }
 
+void set_direction(t_cub *cub, char c)
+{
+	if (c == 'N')
+	{
+		cub->player.planeY = 0.66;
+		cub->player.dirX = -1.0;
+	}
+	else if (c == 'S')
+	{
+		cub->player.planeY = -0.66;
+		cub->player.dirX = 1.0;
+	}
+	else if (c == 'W')
+	{
+		cub->player.planeX = -0.66;
+		cub->player.dirY = -1.0;
+	}
+	else if (c == 'E')
+	{
+		cub->player.planeX = 0.66;
+		cub->player.dirY = 1.0;
+	}
+}
+
 void	get_player_position(t_cub *cub)
 {
 	int	i;
@@ -96,8 +120,9 @@ void	get_player_position(t_cub *cub)
 			if (cub->map[i][j] == 'N' || cub->map[i][j] == 'S'
 				|| cub->map[i][j] == 'W' || cub->map[i][j] == 'E')
 			{
-				cub->player.posX = i;
-				cub->player.posY = j;
+				set_direction(cub, cub->map[i][j]);
+				cub->player.posX = i + 0.5;
+				cub->player.posY = j + 0.5;
 				cub->map[i][j] = '0';
 				return ;
 			}
@@ -163,10 +188,10 @@ void	init_mlx(t_cub *cub)
 {
 	cub->map_wd = 1080;
 	cub->map_ht = 720;
-	cub->player.dirX = -1.0;
+	cub->player.dirX = 0.0;
 	cub->player.dirY = 0.0;
 	cub->player.planeX = 0.0;
-	cub->player.planeY = 0.66;
+	cub->player.planeY = 0.0;
 	get_player_position(cub);
 	cub->fc = create_trgb(0, cub->types->F->r,
 			cub->types->F->g, cub->types->F->b);
