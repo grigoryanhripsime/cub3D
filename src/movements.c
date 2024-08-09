@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:21:11 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 16:33:02 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:55:44 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	move_forward(t_cub *cub)
 
 	x = (int)(cub->player.posX + cub->player.dirX * WSPEED);
 	y = (int)(cub->player.posY);
-	printf("x-> %f | y-> %f    | 3\n", cub->player.posX, cub->player.posY);
 	if (cub->map[x][y] != '1')
 		cub->player.posX += cub->player.dirX * WSPEED;
 	x = (int)(cub->player.posX);
@@ -48,16 +47,14 @@ void	move_left(t_cub *cub)
 	int		x;
 	int		y;
 
-	x = (int)(cub->player.posX - cub->player.dirY * SSPEED);
-	y = (int)(cub->player.posY);
-	if (cub->map[x][y] != '1')
-		cub->player.posY -= cub->player.dirX * SSPEED;
-	printf("x-> %d | y-> %d    | 1\n", x, y);
 	x = (int)(cub->player.posX);
 	y = (int)(cub->player.posY - cub->player.dirX * SSPEED);
 	if (cub->map[x][y] != '1')
+		cub->player.posY -= cub->player.dirX * SSPEED;
+	x = (int)(cub->player.posX + cub->player.dirY * SSPEED);
+	y = (int)(cub->player.posY);
+	if (cub->map[x][y] != '1')
 		cub->player.posX += cub->player.dirY * SSPEED;
-	printf("x-> %d | y-> %d    | 2\n", x, y);
 }
 
 void	move_right(t_cub *cub)
@@ -65,16 +62,14 @@ void	move_right(t_cub *cub)
 	int		x;
 	int		y;
 	
-	x = (int)(cub->player.posX + cub->player.dirY * SSPEED);
-	y = (int)(cub->player.posY);
-	if (cub->map[x][y] != '1')
-		cub->player.posY += cub->player.dirX * SSPEED;
-	printf("x-> %d | y-> %d    | 1\n", x, y);
 	x = (int)(cub->player.posX);
 	y = (int)(cub->player.posY + cub->player.dirX * SSPEED);
 	if (cub->map[x][y] != '1')
+		cub->player.posY += cub->player.dirX * SSPEED;
+	x = (int)(cub->player.posX - cub->player.dirY * SSPEED);
+	y = (int)(cub->player.posY);
+	if (cub->map[x][y] != '1')
 		cub->player.posX -= cub->player.dirY * SSPEED;
-	printf("x-> %d | y-> %d    | 2\n", x, y);
 }
 
 
