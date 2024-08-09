@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 20:28:43 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:25:41 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	get_player_position(t_cub *cub)
 			{
 				cub->player.posX = i;
 				cub->player.posY = j;
+				cub->map[i][j] = '0';
+				return ;
 			}
 			j++;
 		}
@@ -128,18 +130,10 @@ void init_textutes(t_cub *cub)
 	cub->NO->ht = height;
 	cub->WE->ht = height;
 	cub->EA->ht = height;
-	cub->SO->addr = mlx_get_data_addr(cub->SO->img,
-				&cub->SO->bits_per_pixel, &cub->SO->line_length,
-				&cub->SO->endian);
-	cub->NO->addr = mlx_get_data_addr(cub->NO->img,
-				&cub->NO->bits_per_pixel, &cub->NO->line_length,
-				&cub->NO->endian);
-	cub->WE->addr = mlx_get_data_addr(cub->WE->img,
-				&cub->WE->bits_per_pixel, &cub->WE->line_length,
-				&cub->WE->endian);
-	cub->EA->addr = mlx_get_data_addr(cub->EA->img,
-				&cub->EA->bits_per_pixel, &cub->EA->line_length,
-				&cub->EA->endian);
+	cub->SO->addr = mlx_get_data_addr(cub->SO->img, &cub->SO->bits_per_pixel, &cub->SO->line_length, &cub->SO->endian);
+	cub->NO->addr = mlx_get_data_addr(cub->NO->img, &cub->NO->bits_per_pixel, &cub->NO->line_length, &cub->NO->endian);
+	cub->WE->addr = mlx_get_data_addr(cub->WE->img, &cub->WE->bits_per_pixel, &cub->WE->line_length, &cub->WE->endian);
+	cub->EA->addr = mlx_get_data_addr(cub->EA->img, &cub->EA->bits_per_pixel, &cub->EA->line_length, &cub->EA->endian);
 	if (!cub->NO->img || !cub->SO->img || !cub->WE->img || !cub->EA->img)
 	{
 		// mlx_destroy_image(cub->mlx.mlx, cub->NO->img);

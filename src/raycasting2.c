@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 20:46:28 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/09 13:20:00 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,20 +108,6 @@ t_tex_place	set_texture(t_cub *cub)
 	tex.texPos = (tex.drawStart - cub->map_ht / 2 + tex.lineHeight / 2)
 		* tex.step;
 	return (tex);
-}
-
-void draw_image_pixel_by_pixel(t_cub *cub, int x, int y)
-{
-    int color;
-	int size_line = (64 * cub->img.bits_per_pixel) / 8;
-	char *img_data = mlx_get_data_addr(cub->textures.NO, &(cub->img.bits_per_pixel), &size_line, &(cub->img.endian));
-    
-            // Get the color of the pixel at (x, y)
-            int pixel_index = y * size_line + x * (cub->img.bits_per_pixel / 8);
-            color = *(int *)(img_data + pixel_index);
-            
-            // Put the pixel on the screen
-            mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, x, y, color);
 }
 
 void	draw_wall(t_cub *cub, t_tex_place tex, int x)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:21:11 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 21:16:08 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/09 12:46:36 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,13 @@ void	rot_right(t_cub *cub)
 
 int	moveing(int key, t_cub *cub)
 {
+	if (key == 53)
+	{
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+		//add destroying textures and freeing
+		free_cub(cub);
+		exit(0);
+	}
 	if (key == W)
 		move_forward(cub);
 	else if (key == S)
