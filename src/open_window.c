@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:04:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 14:27:39 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 15:35:30 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_patalok_u_pol(t_cub *cub)
 		*dst++ = cub->fc;
 }
 
-void	draw_square(int i, int j, t_cub *cub, int color)
+void	draw_square(double i, double j, t_cub *cub, int color)
 {
 	int	k;
 	int l;
@@ -63,12 +63,14 @@ void minimap(t_cub *cub)
 		{
 			if (cub->map[i][j] == '1')
 				color = create_trgb(0, 0, 0, 153);
-			if (cub->map[i][j] == '0')
+			else if (cub->map[i][j] == '0')
 				color = create_trgb(0, 153, 204, 255);
+			else
+				continue;
 			draw_square(i, j, cub, color);
 		}
 	}
-	draw_square((int)cub->player.posX, (int)cub->player.posY, cub, create_trgb(0, 0, 0, 255));
+	draw_square(cub->player.posX, cub->player.posY, cub, create_trgb(0, 0, 0, 255));
 }
 
 
