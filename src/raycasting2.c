@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 13:20:00 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:16:16 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ void	find_wall(t_cub *cub)
 			cub->ray.side = 1;
 		}
 		//Check if ray has hit a wall
-		if (cub->map[cub->player.mapX]
-			&& cub->map[cub->player.mapX][cub->player.mapY]
-			&& cub->map[cub->player.mapX][cub->player.mapY] == '1')
+		if (cub->map[cub->player.mapX][cub->player.mapY] == '1')
 			cub->ray.hit = 1;
 	}
 }

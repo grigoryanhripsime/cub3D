@@ -3,23 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 19:46:47 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:21:19 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
 
-t_img	*choose_texture(t_cub *vars)
+t_img	choose_texture(t_cub *vars)
 {
-	// if (vars->ray.hit == 2)
-	// 	return (&vars->cdoor);
-	// else if (vars->ray.hit == 3)
-	// 	return (&vars->odoor);
-	// else
 	if (vars->ray.side == 1 && vars->ray.rayDirY <= 0)
 		return (vars->NO);
 	else if (vars->ray.side == 0 && vars->ray.rayDirX > 0)
@@ -29,14 +24,14 @@ t_img	*choose_texture(t_cub *vars)
 	return (vars->WE);
 }
 
-unsigned int	my_mlx_color_taker(t_img *data, int j, int i)
+unsigned int	my_mlx_color_taker(t_img data, int j, int i)
 {
 	char			*dst;
 
-	if (j >= 0 && j < data->wd && i >= 0 && i < data->ht)
+	if (j >= 0 && j < data.wd && i >= 0 && i < data.ht)
 	{
-		dst = data->addr + (i * data->line_length
-				+ j * (data->bits_per_pixel / 8));
+		dst = data.addr + (i * data.line_length
+				+ j * (data.bits_per_pixel / 8));
 		return (*(unsigned int *)dst);
 	}
 	return (0);
