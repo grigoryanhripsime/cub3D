@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:30:37 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 13:44:06 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:13:01 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void	check_borders(char **map, t_cub *cub)
 		{
 			if ((map[i][j] == '0' || map[i][j] == 'N'
 				|| map[i][j] == 'S' || map[i][j] == 'E'
-				|| map[i][j] == 'W')
+				|| map[i][j] == 'W' || map[i][j] == 'O'
+				|| map[i][j] == 'C')
 				&& (ft_isspace(map[i - 1][j])
 				|| ft_isspace(map[i][j - 1])
 				|| ft_isspace(map[i + 1][j])

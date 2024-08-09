@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:48:55 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 18:03:56 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:47:21 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_char(t_type *types, char c, t_lst *map, int flag)
 {
-	if (ft_isspace(c) || c == '1' || c == '0')
+	if (ft_isspace(c) || c == '1' || c == '0' || c == 'O' || c == 'C')
 		return (0);
 	else if ((c == 'E' || c == 'W' || c == 'N' || c == 'S') && flag == 0)
 		return (1);
@@ -54,7 +54,8 @@ int	there_is_valid_char(char *s)
 {
 	if (ft_strchr(s, '1') || ft_strchr(s, '0')
 		|| ft_strchr(s, 'N') || ft_strchr(s, 'S')
-		|| ft_strchr(s, 'W') || ft_strchr(s, 'E'))
+		|| ft_strchr(s, 'W') || ft_strchr(s, 'E')
+		|| ft_strchr(s, 'O') || ft_strchr(s, 'C'))
 		return (1);
 	return (0);
 }
