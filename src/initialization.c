@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 14:25:41 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:28:41 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_cub	*init_cub(char **map, t_type *types)
 	cub->types = types;
 	tabs_to_spaces(cub->map, cub);
 	check_borders(cub->map, cub);
+	check_doors(cub->map, cub);
 	return (cub);
 }
 
@@ -118,32 +119,87 @@ void init_textutes(t_cub *cub)
 	cub->NO = (t_img *)malloc(sizeof(t_img));
 	cub->WE = (t_img *)malloc(sizeof(t_img));
 	cub->EA = (t_img *)malloc(sizeof(t_img));
+	// add malloc checks
 	cub->SO->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->SO, &width, &height);
-	cub->NO->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->NO, &width, &height);
-	cub->WE->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->WE, &width, &height);
-	cub->EA->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->EA, &width, &height);
-	cub->SO->wd = width;
-	cub->NO->wd = width;
-	cub->WE->wd = width;
-	cub->EA->wd = width;
-	cub->SO->ht = height;
-	cub->NO->ht = height;
-	cub->WE->ht = height;
-	cub->EA->ht = height;
-	cub->SO->addr = mlx_get_data_addr(cub->SO->img, &cub->SO->bits_per_pixel, &cub->SO->line_length, &cub->SO->endian);
-	cub->NO->addr = mlx_get_data_addr(cub->NO->img, &cub->NO->bits_per_pixel, &cub->NO->line_length, &cub->NO->endian);
-	cub->WE->addr = mlx_get_data_addr(cub->WE->img, &cub->WE->bits_per_pixel, &cub->WE->line_length, &cub->WE->endian);
-	cub->EA->addr = mlx_get_data_addr(cub->EA->img, &cub->EA->bits_per_pixel, &cub->EA->line_length, &cub->EA->endian);
-	if (!cub->NO->img || !cub->SO->img || !cub->WE->img || !cub->EA->img)
+	if (!cub->SO->img)
 	{
-		// mlx_destroy_image(cub->mlx.mlx, cub->NO->img);
-		// mlx_destroy_image(cub->mlx.mlx, cub->SO->img);
-		// mlx_destroy_image(cub->mlx.mlx, cub->WE->img);
-		// mlx_destroy_image(cub->mlx.mlx, cub->EA->img);
 		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
 		free_cub(cub);
 		err("Coudn't open wall textures\n");
 	}
+	cub->SO->wd = width;
+	cub->SO->ht = height;
+	cub->SO->addr = mlx_get_data_addr(cub->SO->img, &cub->SO->bits_per_pixel, &cub->SO->line_length, &cub->SO->endian);
+	
+	cub->NO->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->NO, &width, &height);
+	if (!cub->NO->img)
+	{
+		mlx_destroy_image(cub->mlx.mlx, cub->SO->img);
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+		free_cub(cub);
+		err("Coudn't open wall textures\n");
+	}
+	cub->NO->wd = width;
+	cub->NO->ht = height;
+	cub->NO->addr = mlx_get_data_addr(cub->NO->img, &cub->NO->bits_per_pixel, &cub->NO->line_length, &cub->NO->endian);
+	
+	cub->WE->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->WE, &width, &height);
+	if (!cub->WE->img)
+	{
+		mlx_destroy_image(cub->mlx.mlx, cub->SO->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->NO->img);
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+		free_cub(cub);
+		err("Coudn't open wall textures\n");
+	}
+	cub->WE->wd = width;
+	cub->WE->ht = height;
+	cub->WE->addr = mlx_get_data_addr(cub->WE->img, &cub->WE->bits_per_pixel, &cub->WE->line_length, &cub->WE->endian);
+	
+	cub->EA->img = mlx_xpm_file_to_image(cub->mlx.mlx, cub->types->EA, &width, &height);
+	if (!cub->EA->img)
+	{
+		mlx_destroy_image(cub->mlx.mlx, cub->WE->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->SO->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->NO->img);
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+		free_cub(cub);
+		err("Coudn't open wall textures\n");
+	}
+	cub->EA->wd = width;
+	cub->EA->ht = height;
+	cub->EA->addr = mlx_get_data_addr(cub->EA->img, &cub->EA->bits_per_pixel, &cub->EA->line_length, &cub->EA->endian);
+	
+	cub->cdoor.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/CloseDoor.xpm", &width, &height);
+	if (!cub->cdoor.img)
+	{
+		mlx_destroy_image(cub->mlx.mlx, cub->WE->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->SO->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->NO->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->EA->img);
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+		free_cub(cub);
+		err("Coudn't open door textures\n");
+	}
+	cub->cdoor.wd = width;
+	cub->cdoor.ht = height;
+	cub->cdoor.addr = mlx_get_data_addr(cub->cdoor.img, &cub->cdoor.bits_per_pixel, &cub->cdoor.line_length, &cub->cdoor.endian);
+
+	cub->odoor.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/OpenDoor.xpm", &width, &height);
+	if (!cub->odoor.img)
+	{
+		mlx_destroy_image(cub->mlx.mlx, cub->WE->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->SO->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->NO->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->EA->img);
+		mlx_destroy_image(cub->mlx.mlx, cub->cdoor.img);
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+		free_cub(cub);
+		err("Coudn't open door textures\n");
+	}
+	cub->odoor.wd = width;
+	cub->odoor.ht = height;
+	cub->odoor.addr = mlx_get_data_addr(cub->odoor.img, &cub->odoor.bits_per_pixel, &cub->odoor.line_length, &cub->odoor.endian);
 }
 
 int mouse_rot(int x, int y, t_cub *cub)

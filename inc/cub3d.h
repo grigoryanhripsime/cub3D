@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 12:57:48 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:00:34 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define AROTATE 0.07
 # define MROTATE 0.03
 # define WSPEED 0.15
-# define SSPEED 0.1
+# define SSPEED 0.12
 # define ROTSPEED 0.06
 
 # define MAP_WIDTH 36
@@ -204,6 +204,7 @@ char	**lst_to_array(t_lst *map_stract, t_type *types);
 char	*replace_tab_with_spaces(char **map, int i, int j, t_cub *cub);
 void	tabs_to_spaces(char **map, t_cub *cub);
 void	check_borders(char **map, t_cub *cub);
+void	check_doors(char **map, t_cub *cub);
 
 //initialization.c
 t_cub	*init_cub(char **map, t_type *types);
