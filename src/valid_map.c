@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:30:37 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 13:44:06 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:01:29 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void	check_borders(char **map, t_cub *cub)
 		{
 			if ((map[i][j] == '0' || map[i][j] == 'N'
 				|| map[i][j] == 'S' || map[i][j] == 'E'
-				|| map[i][j] == 'W')
+				|| map[i][j] == 'W' || map[i][j] == 'O'
+				|| map[i][j] == 'C')
 				&& (ft_isspace(map[i - 1][j])
 				|| ft_isspace(map[i][j - 1])
 				|| ft_isspace(map[i + 1][j])
@@ -106,6 +107,30 @@ void	check_borders(char **map, t_cub *cub)
 			{
 				free_cub(cub);
 				err("Invalid map(invalid borders)\n");
+			}
+		}
+	}
+}
+
+void	check_doors(char **map, t_cub *cub)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if ((map[i][j] == 'O' || map[i][j] == 'C') 
+			&& !(map[i - 1][j] && map[i - 1][j] == '1'
+			&& map[i + 1][j] && map[i + 1][j] == '1')
+			&& !(map[i][j - 1] && map[i][j - 1] == '1'
+			&& map[i][j + 1] && map[i][j + 1] == '1'))
+			{
+				free_cub(cub);
+				err("Invalid map(invalid doors)\n");
 			}
 		}
 	}

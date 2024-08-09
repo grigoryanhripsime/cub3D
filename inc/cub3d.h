@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 17:22:53 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:12:45 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ char	**lst_to_array(t_lst *map_stract, t_type *types);
 char	*replace_tab_with_spaces(char **map, int i, int j, t_cub *cub);
 void	tabs_to_spaces(char **map, t_cub *cub);
 void	check_borders(char **map, t_cub *cub);
+void	check_doors(char **map, t_cub *cub);
 
 //initialization.c
 t_cub	*init_cub(char **map, t_type *types);
