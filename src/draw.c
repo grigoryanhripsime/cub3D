@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:14:16 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:45:11 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:00:44 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ t_img	choose_texture(t_cub *vars)
 unsigned int	my_mlx_color_taker(t_img data, int j, int i)
 {
 	char			*dst;
+	unsigned int	color;
 
 	if (j >= 0 && j < data.wd && i >= 0 && i < data.ht)
 	{
 		dst = data.addr + (i * data.line_len
 				+ j * (data.bits_per_pixel / 8));
-		return (*(unsigned int *)dst);
+		color = *(unsigned int *)dst;
+		if (color == 4278190080) 
+            return (0);
+		return (color);
 	}
 	return (0);
 }

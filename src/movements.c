@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:21:11 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:56:59 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:22:10 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ int	moveing(int key, t_cub *cub)
 		free_cub(cub);
 		exit(0);
 	}
-	if (key == E)
+	if (key == SPACE)
+		gun_anim(cub);
+	else if (key == E)
 		try_to_open_door(cub);
 	else if (key == W)
 		move_forward(cub);

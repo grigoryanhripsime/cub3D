@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 16:08:30 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:21:47 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "../mlx/mlx.h"
 
 # define ESC 53
-# define M 46
+# define SPACE 49
 # define E 14
 # define W 13
 # define A 0
@@ -162,7 +162,7 @@ typedef struct s_cub
 	t_color		f_color;
 	t_color		r_color;
 	t_lst		*lst_map;
-	t_img		gun;
+	t_img		*gun;
 	t_img		gun_anim;
 	t_img		SO;
 	t_img		NO;
@@ -248,7 +248,8 @@ void	draw_wall(t_cub *cub, t_tex_place tex, int x);
 //draw2.c
 void	draw_patalok_u_pol(t_cub *cub);
 int		ft_redraw(t_cub *cub);
-void	gun(t_cub *cub);
+void	gun(t_cub *cub, int i);
+void	gun_anim(t_cub *cub);
 
 //movements.c
 void	move_forward(t_cub *cub);

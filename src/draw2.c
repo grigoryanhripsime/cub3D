@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:04:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 16:08:14 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:27:06 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,47 @@ void	draw_patalok_u_pol(t_cub *cub)
 		*dst++ = cub->fc;
 }
 
+void	gun(t_cub *cub, int i)
+{
+	int	x;
+	int	y;
+	int	px;
+	int	py;
+
+	px = 0;
+	x = cub->map_wd / 2 - cub->gun[i].wd / 2 - 1;
+	while (++x < cub->map_wd / 2 + cub->gun[i].wd / 2)
+	{
+		y = cub->map_ht - cub->gun[i].ht - 1;
+		py = 0;
+		while (++y < cub->map_ht)
+		{
+			int color = my_mlx_color_taker(cub->gun[i], px, py);
+			if (color != 0)
+				my_mlx_pixel_put(&cub->img, x, y,color);
+			py++;
+		}
+		px++;
+	}
+}
+
+void gun_anim(t_cub *cub)
+{
+	static int	i;
+	static int	frame;
+
+	if (frame % 5 == 0)
+	{
+		gun(cub, i);
+		i++;
+		if (i == 5)
+			i = 0;
+	}
+	frame++;
+	if (frame >= 100000)
+		frame = 0;
+}
+
 int	ft_redraw(t_cub *cub)
 {
 	cub->img.img = mlx_new_image(cub->mlx.mlx, cub->map_wd, cub->map_ht);
@@ -34,30 +75,8 @@ int	ft_redraw(t_cub *cub)
 	draw_patalok_u_pol(cub);
 	raycasting(cub);
 	minimap(cub);
+	gun_anim(cub);
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->img.img, 0, 0);
 	mlx_destroy_image(cub->mlx.mlx, cub->img.img);
 	return (0);
-}
-
-void	gun(t_cub *cub)
-{
-	int	x;
-	int	y;
-	int	px;
-	int	py;
-
-	px = 0;
-	x = cub->map_wd / 2 - cub->gun.wd / 2 - 1;
-	while (++x < cub->map_wd / 2 + cub->gun.wd / 2)
-	{
-		y = cub->map_ht - cub->gun.ht - 1;
-		py = 0;
-		while (++y < cub->img.ht)
-		{
-			my_mlx_pixel_put(&cub->img, x, y,
-				my_mlx_color_taker(cub->gun, px, py));
-			py++;
-		}
-		px++;
-	}
 }

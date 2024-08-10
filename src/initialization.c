@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 16:05:10 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 16:52:06 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	init_mlx(t_cub *cub)
 {
 	cub->map_wd = 1080;
 	cub->map_ht = 720;
+	cub->img.ht = cub->map_ht;
+	cub->img.wd = cub->map_wd;
 	cub->player.dirX = 0.0;
 	cub->player.dirY = 0.0;
 	cub->player.planeX = 0.0;

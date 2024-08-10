@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 16:08:07 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:11:21 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,14 +124,11 @@ void	raycasting(t_cub *cub)
 		cub->ray.hit = 0;
 		check_ray(cub);
 		find_wall(cub);
-		//printf("1 ->  %f | 2 -> %d\n", cub->ray.wallDist, tex.lineHeight);
 		if (cub->ray.side == 0)
 			cub->ray.wallDist = cub->ray.sideDistX - cub->ray.deltaDistX;
 		else
 			cub->ray.wallDist = cub->ray.sideDistY - cub->ray.deltaDistY;
 		tex = set_texture(cub);
-		//printf("start -> %d  |  end -> %d\n", tex.drawStart, tex.drawEnd);
 		draw_wall(cub, tex, x);
 	}
-	gun(cub);
 }
