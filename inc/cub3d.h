@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:53:19 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 16:08:30 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,7 @@ void	draw_wall(t_cub *cub, t_tex_place tex, int x);
 //draw2.c
 void	draw_patalok_u_pol(t_cub *cub);
 int		ft_redraw(t_cub *cub);
+void	gun(t_cub *cub);
 
 //movements.c
 void	move_forward(t_cub *cub);
@@ -275,9 +276,11 @@ void	set_NO_texture(t_cub *cub);
 void	set_WE_texture(t_cub *cub);
 void	set_EA_texture(t_cub *cub);
 
-//set_door_textures.c
+//set_textures.c
 void	set_close_door_texture(t_cub *cub);
 void	set_open_door_texture(t_cub *cub);
+void	set_gun1(t_cub *cub);
+void	set_gun2(t_cub *cub);
 
 //minimap.c
 void	draw_square(double i, double j, t_cub *cub, int color);

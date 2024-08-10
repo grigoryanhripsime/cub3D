@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:53:03 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 16:05:10 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,43 +65,8 @@ void	init_textutes(t_cub *cub)
 	set_EA_texture(cub);
 	set_close_door_texture(cub);
 	set_open_door_texture(cub);
-
-	int width;
-	int height;
-	
-	cub->gun.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/00_frame.xpm", &width, &height);
-	if (!cub->gun.img)
-	{
-		mlx_destroy_image(cub->mlx.mlx, cub->WE.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->SO.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->NO.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->EA.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->od.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->cd.img);
-		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
-		free_cub(cub);
-		err("Pistol texture error\n");
-	}
-	cub->gun.wd = width;
-	cub->gun.ht = height;
-	cub->gun.addr = mlx_get_data_addr(cub->gun.img, &cub->gun.bits_per_pixel, &cub->gun.line_len, &cub->gun.endian);
-
-	cub->gun_anim.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/01_frame.xpm", &width, &height);
-	if (!cub->gun_anim.img)
-	{
-		mlx_destroy_image(cub->mlx.mlx, cub->WE.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->SO.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->NO.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->EA.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->od.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->od.img);
-		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
-		free_cub(cub);
-		err("Pistol texture error\n");
-	}
-	cub->gun_anim.wd = width;
-	cub->gun_anim.ht = height;
-	cub->gun_anim.addr = mlx_get_data_addr(cub->gun_anim.img, &cub->gun_anim.bits_per_pixel, &cub->gun_anim.line_len, &cub->gun_anim.endian);
+	set_gun1(cub);
+	set_gun2(cub);
 }
 
 void	init_mlx(t_cub *cub)

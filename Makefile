@@ -30,7 +30,7 @@ SRCS_NAME = main.c \
 			movements.c \
 			movements2.c \
 			set_wall_textures.c \
-			set_door_textures.c \
+			set_textures.c \
 			minimap.c \
 			draw.c \
 			draw2.c \

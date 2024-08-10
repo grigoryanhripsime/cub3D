@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:55:23 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 16:08:07 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,29 +110,6 @@ t_tex_place	set_texture(t_cub *cub)
 	tex.texPos = (tex.drawStart - cub->map_ht / 2 + tex.lineHeight / 2)
 		* tex.step;
 	return (tex);
-}
-
-void gun(t_cub *cub)
-{
-	int	x;
-	int	y;
-	int	px;
-	int	py;
-
-	px = 0;
-	x = cub->map_wd / 2 - cub->gun.wd / 2 - 1;
-	while (++x < cub->map_wd / 2 + cub->gun.wd / 2)
-	{
-		y = cub->map_ht - cub->gun.ht - 1;
-		py = 0;
-		while (++y < cub->img.ht)
-		{
-			my_mlx_pixel_put(&cub->img, x, y,
-				my_mlx_color_taker(cub->gun, px, py));
-			py++;
-		}
-		px++;
-	}
 }
 
 void	raycasting(t_cub *cub)
