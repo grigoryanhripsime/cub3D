@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 19:16:16 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 20:00:49 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ void	find_wall(t_cub *cub)
 		//Check if ray has hit a wall
 		if (cub->map[cub->player.mapX][cub->player.mapY] == '1')
 			cub->ray.hit = 1;
+		if (cub->map[cub->player.mapX][cub->player.mapY] == 'C')
+			cub->ray.hit = 2;
+		if (cub->map[cub->player.mapX][cub->player.mapY] == 'O')
+			cub->ray.hit = 3;
 	}
 }
 

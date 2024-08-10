@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 19:26:38 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:59:31 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,8 +191,8 @@ void init_textutes(t_cub *cub)
 	cub->EA.ht = height;
 	cub->EA.addr = mlx_get_data_addr(cub->EA.img, &cub->EA.bits_per_pixel, &cub->EA.line_length, &cub->EA.endian);
 	
-	cub->cdoor.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/CloseDoor.xpm", &width, &height);
-	if (!cub->cdoor.img)
+	cub->closeD.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/CloseDoor.xpm", &width, &height);
+	if (!cub->closeD.img)
 	{
 		mlx_destroy_image(cub->mlx.mlx, cub->WE.img);
 		mlx_destroy_image(cub->mlx.mlx, cub->SO.img);
@@ -202,25 +202,25 @@ void init_textutes(t_cub *cub)
 		free_cub(cub);
 		err("Coudn't open door textures\n");
 	}
-	cub->cdoor.wd = width;
-	cub->cdoor.ht = height;
-	cub->cdoor.addr = mlx_get_data_addr(cub->cdoor.img, &cub->cdoor.bits_per_pixel, &cub->cdoor.line_length, &cub->cdoor.endian);
+	cub->closeD.wd = width;
+	cub->closeD.ht = height;
+	cub->closeD.addr = mlx_get_data_addr(cub->closeD.img, &cub->closeD.bits_per_pixel, &cub->closeD.line_length, &cub->closeD.endian);
 
-	cub->odoor.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/OpenDoor.xpm", &width, &height);
-	if (!cub->odoor.img)
+	cub->openD.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/OpenDoor.xpm", &width, &height);
+	if (!cub->openD.img)
 	{
 		mlx_destroy_image(cub->mlx.mlx, cub->WE.img);
 		mlx_destroy_image(cub->mlx.mlx, cub->SO.img);
 		mlx_destroy_image(cub->mlx.mlx, cub->NO.img);
 		mlx_destroy_image(cub->mlx.mlx, cub->EA.img);
-		mlx_destroy_image(cub->mlx.mlx, cub->cdoor.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->closeD.img);
 		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
 		free_cub(cub);
 		err("Coudn't open door textures\n");
 	}
-	cub->odoor.wd = width;
-	cub->odoor.ht = height;
-	cub->odoor.addr = mlx_get_data_addr(cub->odoor.img, &cub->odoor.bits_per_pixel, &cub->odoor.line_length, &cub->odoor.endian);
+	cub->openD.wd = width;
+	cub->openD.ht = height;
+	cub->openD.addr = mlx_get_data_addr(cub->openD.img, &cub->openD.bits_per_pixel, &cub->openD.line_length, &cub->openD.endian);
 }
 
 int mouse_rot(int x, int y, t_cub *cub)

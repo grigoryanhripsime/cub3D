@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:21:11 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 16:55:44 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/09 21:53:41 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	move_forward(t_cub *cub)
 
 	x = (int)(cub->player.posX + cub->player.dirX * WSPEED);
 	y = (int)(cub->player.posY);
-	if (cub->map[x][y] != '1')
+	if (cub->map[x][y] != '1' && cub->map[x][y] != 'C')
 		cub->player.posX += cub->player.dirX * WSPEED;
 	x = (int)(cub->player.posX);
 	y = (int)(cub->player.posY + cub->player.dirY * WSPEED);
-	if (cub->map[x][y] != '1')
+	if (cub->map[x][y] != '1' && cub->map[x][y] != 'C')
 		cub->player.posY += cub->player.dirY * WSPEED;
 }
 
@@ -34,11 +34,11 @@ void	move_back(t_cub *cub)
 
 	x = (int)(cub->player.posX - cub->player.dirX * WSPEED);
 	y = (int)(cub->player.posY);
-	if (cub->map[x][y] != '1')
+	if (cub->map[x][y] != '1' && cub->map[x][y] != 'C')
 		cub->player.posX -= cub->player.dirX * WSPEED;
 	x = (int)(cub->player.posX);
 	y = (int)(cub->player.posY - cub->player.dirY * WSPEED);
-	if (cub->map[x][y] != '1')
+	if (cub->map[x][y] != '1' && cub->map[x][y] != 'C')
 		cub->player.posY -= cub->player.dirY * WSPEED;
 }
 
@@ -49,11 +49,11 @@ void	move_left(t_cub *cub)
 
 	x = (int)(cub->player.posX);
 	y = (int)(cub->player.posY - cub->player.dirX * SSPEED);
-	if (cub->map[x][y] != '1')
+	if (cub->map[x][y] != '1' && cub->map[x][y] != 'C')
 		cub->player.posY -= cub->player.dirX * SSPEED;
 	x = (int)(cub->player.posX + cub->player.dirY * SSPEED);
 	y = (int)(cub->player.posY);
-	if (cub->map[x][y] != '1')
+	if (cub->map[x][y] != '1' && cub->map[x][y] != 'C')
 		cub->player.posX += cub->player.dirY * SSPEED;
 }
 
@@ -64,11 +64,11 @@ void	move_right(t_cub *cub)
 	
 	x = (int)(cub->player.posX);
 	y = (int)(cub->player.posY + cub->player.dirX * SSPEED);
-	if (cub->map[x][y] != '1')
+	if (cub->map[x][y] != '1' && cub->map[x][y] != 'C')
 		cub->player.posY += cub->player.dirX * SSPEED;
 	x = (int)(cub->player.posX - cub->player.dirY * SSPEED);
 	y = (int)(cub->player.posY);
-	if (cub->map[x][y] != '1')
+	if (cub->map[x][y] != '1' && cub->map[x][y] != 'C')
 		cub->player.posX -= cub->player.dirY * SSPEED;
 }
 
@@ -104,6 +104,28 @@ void	rot_right(t_cub *cub)
 }
 
 
+void try_to_open_door(t_cub *cub)
+{
+	printf("x-> %f | y-> %f\n", cub->player.dirX, cub->player.dirY);
+	int	x;
+	int	y;
+
+	x = (int)cub->player.posX;
+	y = (int)cub->player.posY;
+	if (cub->player.dirX < -0.05)
+		x = (int)cub->player.posX - 1;
+	else if (cub->player.dirX > 0.05)
+		x = (int)cub->player.posX + 1;
+	if (cub->player.dirY < -0.05)
+		y = (int)cub->player.posY - 1;
+	else if (cub->player.dirY > 0.05)
+		y = (int)cub->player.posY + 1;
+	if (cub->map[x][y] == 'C')
+		cub->map[x][y] = 'O';
+	else if (cub->map[x][y] == 'O')
+		cub->map[x][y] = 'C';
+}
+
 int	moveing(int key, t_cub *cub)
 {
 	if (key == 53)
@@ -113,7 +135,9 @@ int	moveing(int key, t_cub *cub)
 		free_cub(cub);
 		exit(0);
 	}
-	if (key == W)
+	if (key == E)
+		try_to_open_door(cub);
+	else if (key == W)
 		move_forward(cub);
 	else if (key == S)
 		move_back(cub);
