@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:48:51 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:53:19 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,8 @@ typedef struct s_cub
 	t_color		f_color;
 	t_color		r_color;
 	t_lst		*lst_map;
-	t_img		*gun;
+	t_img		gun;
+	t_img		gun_anim;
 	t_img		SO;
 	t_img		NO;
 	t_img		EA;
