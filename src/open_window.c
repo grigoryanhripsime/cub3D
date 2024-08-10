@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:04:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 15:35:30 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/10 14:22:38 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,20 @@ void	draw_square(double i, double j, t_cub *cub, int color)
 {
 	int	k;
 	int l;
-	
-	k = i * 10;
-	while (k < (i * 10) + 10)
+
+	k = (i * 10) - 5;
+	while (k < (i * 10) + 5)
 	{
-		l = j * 10;
-		while (l < (j * 10) + 10)
+		l = (j * 10) - 5;
+		while (l < (j * 10) + 5)
 		{
-			my_mlx_pixel_put(&cub->img, l, k, color);
+			// printf("l = %d, k = %d\n", l, k);
+			my_mlx_pixel_put(&cub->img, l + 10, k + 10, color);
 			l++;
 		}
 		k++;
 	}
+	// my_mlx_pixel_put(&cub->img, j * 10 + 10, i * 10 + 10, create_trgb(0, 0, 0, 0));
 }
 
 void minimap(t_cub *cub)
@@ -65,12 +67,16 @@ void minimap(t_cub *cub)
 				color = create_trgb(0, 0, 0, 153);
 			else if (cub->map[i][j] == '0')
 				color = create_trgb(0, 153, 204, 255);
+			else if (cub->map[i][j] == 'C')
+				color = create_trgb(0, 0, 204, 204);
+			else if (cub->map[i][j] == 'O')
+				color = create_trgb(0, 102, 255, 178);
 			else
 				continue;
 			draw_square(i, j, cub, color);
 		}
 	}
-	draw_square(cub->player.posX, cub->player.posY, cub, create_trgb(0, 0, 0, 255));
+	draw_square(cub->player.posX - 0.5, cub->player.posY - 0.5, cub, create_trgb(0, 255, 255, 0));
 }
 
 
