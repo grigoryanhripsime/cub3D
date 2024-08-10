@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:21:11 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 21:53:41 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/10 14:51:03 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,11 @@ void	rot_right(t_cub *cub)
 
 void try_to_open_door(t_cub *cub)
 {
-	printf("x-> %f | y-> %f\n", cub->player.dirX, cub->player.dirY);
 	int	x;
 	int	y;
 
-	x = (int)cub->player.posX;
-	y = (int)cub->player.posY;
-	if (cub->player.dirX < -0.05)
-		x = (int)cub->player.posX - 1;
-	else if (cub->player.dirX > 0.05)
-		x = (int)cub->player.posX + 1;
-	if (cub->player.dirY < -0.05)
-		y = (int)cub->player.posY - 1;
-	else if (cub->player.dirY > 0.05)
-		y = (int)cub->player.posY + 1;
+	x = (int)cub->player.posX + round(cub->player.dirX);
+	y = (int)cub->player.posY + round(cub->player.dirY);
 	if (cub->map[x][y] == 'C')
 		cub->map[x][y] = 'O';
 	else if (cub->map[x][y] == 'O')
