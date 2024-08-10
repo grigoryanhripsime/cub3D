@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 20:02:57 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:43:12 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,29 @@ unsigned int	my_mlx_color_taker(t_img data, int j, int i)
 	return (0);
 }
 
+void gun(t_cub *cub)
+{
+	int	x;
+	int	y;
+	int	px;
+	int	py;
+
+	px = 0;
+	x = cub->map_wd / 2 - cub->gun.wd / 2 - 1;
+	while (++x < cub->map_wd / 2 + cub->gun.wd / 2)
+	{
+		y = cub->map_ht - cub->gun.ht - 1;
+		py = 0;
+		while (++y < cub->img.ht)
+		{
+			my_mlx_pixel_put(&cub->img, x, y,
+				my_mlx_color_taker(cub->gun, px, py));
+			py++;
+		}
+		px++;
+	}
+}
+
 void	raycasting(t_cub *cub)
 {
 	t_tex_place	tex;
@@ -62,4 +85,5 @@ void	raycasting(t_cub *cub)
 		//printf("start -> %d  |  end -> %d\n", tex.drawStart, tex.drawEnd);
 		draw_wall(cub, tex, x);
 	}
+	gun(cub);
 }

@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 19:59:31 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:43:53 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,42 @@ void init_textutes(t_cub *cub)
 	cub->openD.wd = width;
 	cub->openD.ht = height;
 	cub->openD.addr = mlx_get_data_addr(cub->openD.img, &cub->openD.bits_per_pixel, &cub->openD.line_length, &cub->openD.endian);
+
+
+
+	cub->gun.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/00_frame.xpm", &width, &height);
+	if (!cub->gun.img)
+	{
+		mlx_destroy_image(cub->mlx.mlx, cub->WE.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->SO.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->NO.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->EA.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->openD.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->closeD.img);
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+		free_cub(cub);
+		err("Pistol texture error\n");
+	}
+	cub->gun.wd = width;
+	cub->gun.ht = height;
+	cub->gun.addr = mlx_get_data_addr(cub->gun.img, &cub->gun.bits_per_pixel, &cub->gun.line_length, &cub->gun.endian);
+
+	cub->gun_anim.img = mlx_xpm_file_to_image(cub->mlx.mlx, "textures/01_frame.xpm", &width, &height);
+	if (!cub->gun_anim.img)
+	{
+		mlx_destroy_image(cub->mlx.mlx, cub->WE.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->SO.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->NO.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->EA.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->openD.img);
+		mlx_destroy_image(cub->mlx.mlx, cub->closeD.img);
+		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+		free_cub(cub);
+		err("Pistol texture error\n");
+	}
+	cub->gun_anim.wd = width;
+	cub->gun_anim.ht = height;
+	cub->gun_anim.addr = mlx_get_data_addr(cub->gun_anim.img, &cub->gun_anim.bits_per_pixel, &cub->gun_anim.line_length, &cub->gun_anim.endian);
 }
 
 int mouse_rot(int x, int y, t_cub *cub)
