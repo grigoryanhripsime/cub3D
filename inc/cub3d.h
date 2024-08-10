@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 19:58:43 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:48:51 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_img
 	int		wd;
 	int		ht;
 	int		endian;
-	int		line_length;
+	int		line_len;
 	int		bits_per_pixel;
 	char	*addr;
 	void	*img;
@@ -156,8 +156,8 @@ typedef struct s_cub
 	t_mlx		mlx;
 	t_player	player;
 	t_img		img;
-	t_img		closeD;
-	t_img		openD;
+	t_img		cd;
+	t_img		od;
 	t_rt		ray;
 	t_color		f_color;
 	t_color		r_color;
@@ -186,6 +186,8 @@ int		ft_atoi(char *str);
 //ft_split.c
 int		ft_words_count(char *s);
 char	**ft_split(char const *s);
+
+//ft_split_color.c
 int		ft_words_count_color(char *s, char c);
 char	**ft_split_color(char const *s, char c);
 
@@ -209,9 +211,12 @@ void	check_doors(char **map, t_cub *cub);
 //initialization.c
 t_cub	*init_cub(char **map, t_type *types);
 t_cub	*init_game(char *av);
+void	init_mlx(t_cub *cub);
+
+//initialization2.c
 t_lst	*read_map(char *av);
 void	get_player_position(t_cub *cub);
-void	init_mlx(t_cub *cub);
+void set_direction(t_cub *cub, char c);
 
 //struct_map_check.c
 int		check_char(t_type *types, char c, t_lst *map, int flag);
@@ -231,11 +236,17 @@ t_type	*type_identifiers(t_lst **map);
 t_color	*type_set_color(char *str);
 void	type_error(t_type *types, char **split, t_lst *map);
 
-//open_window.c
+
+//draw.c
 int		create_trgb(int t, int r, int g, int b);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+unsigned int	my_mlx_color_taker(t_img data, int j, int i);
+t_img	choose_texture(t_cub *vars);
+void	draw_wall(t_cub *cub, t_tex_place tex, int x);
+
+//draw2.c
 void	draw_patalok_u_pol(t_cub *cub);
 int		ft_redraw(t_cub *cub);
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 //movements.c
 void	move_forward(t_cub *cub);
@@ -243,23 +254,32 @@ void	move_back(t_cub *cub);
 void	move_left(t_cub *cub);
 void	move_right(t_cub *cub);
 int		moveing(int key, t_cub *cub);
+
+//movements2.c
 void	rot_left(t_cub *cub);
 void	rot_right(t_cub *cub);
+void try_to_open_door(t_cub *cub);
+int mouse_rot(int x, int y, t_cub *cub);
 
 //raycasting.c
 void	raycasting(t_cub *cub);
-
-//raycasting2.c
 void	set_ray(t_cub *cub, int x);
 void	check_ray(t_cub *cub);
 void	find_wall(t_cub *cub);
 t_tex_place	set_texture(t_cub *cub);
-void	draw_wall(t_cub *cub, t_tex_place tex, int x);
-unsigned int	my_mlx_color_taker(t_img data, int j, int i);
-t_img	choose_texture(t_cub *vars);
 
+//set_wall_textures.c
+void	set_SO_texture(t_cub *cub);
+void	set_NO_texture(t_cub *cub);
+void	set_WE_texture(t_cub *cub);
+void	set_EA_texture(t_cub *cub);
 
+//set_door_textures.c
+void	set_close_door_texture(t_cub *cub);
+void	set_open_door_texture(t_cub *cub);
 
-
+//minimap.c
+void	draw_square(double i, double j, t_cub *cub, int color);
+void	minimap(t_cub *cub);
 
 #endif

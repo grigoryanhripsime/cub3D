@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:29:23 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/08 18:46:11 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/10 14:24:16 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-// void	minimap(t_cub *cub)
-// {
-// 	void *mlx = mlx_init();
-// 	void *window = mlx_new_window(mlx, 200, 200, "Minimap");
-	
-	
-// }
 
 int	main(int ac, char **av)
 {
@@ -28,6 +20,5 @@ int	main(int ac, char **av)
 		err("Invalid count of arguments\n");
 	cub = init_game(av[1]);
 	init_mlx(cub);
-	//minimap(cub);
 	free_cub(cub);
 }

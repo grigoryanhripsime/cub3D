@@ -20,15 +20,20 @@ SRCS_NAME = main.c \
 			valid_map.c \
 			struct_map_check.c \
 			raycasting.c \
-			raycasting2.c \
 			ft_split.c \
 			type_identifier.c \
 			type_identifier2.c \
 			utils2.c \
 			ft_split_color.c \
-			open_window.c \
 			initialization.c \
+			initialization2.c \
 			movements.c \
+			movements2.c \
+			set_wall_textures.c \
+			set_door_textures.c \
+			minimap.c \
+			draw.c \
+			draw2.c \
 
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
