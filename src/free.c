@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:08:46 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 19:58:18 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:19:03 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	free_types(t_type *types)
 		free(types->west);
 	if (types->east)
 		free(types->east);
-	if (types->F)
-		free(types->F);
-	if (types->C)
-		free(types->C);
+	if (types->floor_color)
+		free(types->floor_color);
+	if (types->ceiling_color)
+		free(types->ceiling_color);
 	free(types);
 }
 

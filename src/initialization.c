@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 19:58:18 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:26:20 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_cub	*init_game(char *av)
 	map_struct = read_map(av);
 	types = type_identifiers(&map_struct);
 	if (!types || !types->north || !types->west
-		|| !types->east || !types->F || !types->C)
+		|| !types->east || !types->floor_color || !types->ceiling_color)
 	{
 		free_types(types);
 		free_map_struct(map_struct);
@@ -86,16 +86,16 @@ void	init_mlx(t_cub *cub)
 	cub->map_ht = 720;
 	cub->img.ht = cub->map_ht;
 	cub->img.wd = cub->map_wd;
-	cub->player.dirX = 0.0;
-	cub->player.dirY = 0.0;
-	cub->player.planeX = 0.0;
-	cub->player.planeY = 0.0;
+	cub->player.dir_x = 0.0;
+	cub->player.dir_y = 0.0;
+	cub->player.plane_x = 0.0;
+	cub->player.plane_y = 0.0;
 	cub->play = false;
 	get_player_position(cub);
-	cub->fc = create_trgb(0, cub->types->F->r,
-			cub->types->F->g, cub->types->F->b);
-	cub->rc = create_trgb(0, cub->types->C->r,
-			cub->types->C->g, cub->types->C->b);
+	cub->fc = create_trgb(0, cub->types->floor_color->r,
+			cub->types->floor_color->g, cub->types->floor_color->b);
+	cub->rc = create_trgb(0, cub->types->ceiling_color->r,
+			cub->types->ceiling_color->g, cub->types->ceiling_color->b);
 	cub->mlx.mlx = mlx_init();
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx,
 			cub->map_wd, cub->map_ht, "cub3D");

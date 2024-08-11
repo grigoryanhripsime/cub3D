@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 19:58:18 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:29:55 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,28 @@
 
 typedef struct s_player
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-	int		stepX;
-	int		stepY;
-	int		mapX;
-	int		mapY;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	int		step_x;
+	int		step_y;
+	int		map_x;
+	int		map_y;
 }	t_player;
 
 typedef struct s_rt
 {
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	wallDist;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	wall_dist;
 	int		hit;
 	int		side;
 
@@ -105,8 +105,8 @@ typedef struct s_type_identifier
 	char	*south;
 	char	*west;
 	char	*east;
-	t_color	*F;
-	t_color	*C;
+	t_color	*floor_color;
+	t_color	*ceiling_color;
 }	t_type;
 
 typedef struct s_mlx
@@ -117,20 +117,20 @@ typedef struct s_mlx
 
 typedef struct s_tex_place
 {
-	int		texX;
-	int		texY;
-	int		drawEnd;
-	int		drawStart;
-	int		lineHeight;
+	int		tex_x;
+	int		tex_y;
+	int		draw_end;
+	int		draw_start;
+	int		line_height;
 	double	step;
-	double	texPos;
+	double	tex_pos;
 }	t_tex_place;
 
 typedef struct s_textures
 {
 	void	*north;
 	void	*south;
-	void	*WE;
+	void	*west;
 	void	*east;
 }	t_textures;
 

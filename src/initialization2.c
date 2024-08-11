@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:22:51 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:48:10 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:26:20 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	get_player_position(t_cub *cub)
 				|| cub->map[i][j] == 'W' || cub->map[i][j] == 'E')
 			{
 				set_direction(cub, cub->map[i][j]);
-				cub->player.posX = i + 0.5;
-				cub->player.posY = j + 0.5;
+				cub->player.pos_x = i + 0.5;
+				cub->player.pos_y = j + 0.5;
 				cub->map[i][j] = '0';
 				return ;
 			}
@@ -68,22 +68,22 @@ void	set_direction(t_cub *cub, char c)
 {
 	if (c == 'N')
 	{
-		cub->player.planeY = 0.66;
-		cub->player.dirX = -1.0;
+		cub->player.plane_y = 0.66;
+		cub->player.dir_x = -1.0;
 	}
 	else if (c == 'S')
 	{
-		cub->player.planeY = -0.66;
-		cub->player.dirX = 1.0;
+		cub->player.plane_y = -0.66;
+		cub->player.dir_x = 1.0;
 	}
 	else if (c == 'W')
 	{
-		cub->player.planeX = -0.66;
-		cub->player.dirY = -1.0;
+		cub->player.plane_x = -0.66;
+		cub->player.dir_y = -1.0;
 	}
 	else if (c == 'E')
 	{
-		cub->player.planeX = 0.66;
-		cub->player.dirY = 1.0;
+		cub->player.plane_x = 0.66;
+		cub->player.dir_y = 1.0;
 	}
 }

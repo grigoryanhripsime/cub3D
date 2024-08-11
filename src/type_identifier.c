@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:53:47 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 20:03:36 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:19:37 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	init_type_struct(t_type *types)
 	types->south = NULL;
 	types->west = NULL;
 	types->east = NULL;
-	types->F = NULL;
-	types->C = NULL;
+	types->floor_color = NULL;
+	types->ceiling_color = NULL;
 }
 
 int	type_name(char *to_check, char *with, char *file)
@@ -54,16 +54,16 @@ void	init_type(t_type *types, t_lst *map, char **split)
 		types->west = split[1];
 	else if (type_name(split[0], "EA", split[1]) && !types->east)
 		types->east = split[1];
-	else if (type_name(split[0], "F", split[1]) && !types->F)
+	else if (type_name(split[0], "F", split[1]) && !types->floor_color)
 	{
-		types->F = type_set_color(split[1]);
-		if (!types->F)
+		types->floor_color = type_set_color(split[1]);
+		if (!types->floor_color)
 			type_error(types, split, map);
 	}
-	else if (type_name(split[0], "C", split[1]) && !types->C)
+	else if (type_name(split[0], "C", split[1]) && !types->ceiling_color)
 	{
-		types->C = type_set_color(split[1]);
-		if (!types->C)
+		types->ceiling_color = type_set_color(split[1]);
+		if (!types->ceiling_color)
 			type_error(types, split, map);
 	}
 	else

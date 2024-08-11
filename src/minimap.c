@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:08:41 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:48:45 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:25:29 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ void	minimap(t_cub *cub)
 			draw_square(i, j, cub, color);
 		}
 	}
-	draw_square(cub->player.posX - 0.5, cub->player.posY - 0.5,
+	draw_square(cub->player.pos_x - 0.5, cub->player.pos_y - 0.5,
 		cub, create_trgb(0, 255, 255, 0));
 }

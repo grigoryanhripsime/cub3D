@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:14:16 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 20:00:46 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:28:13 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ t_img	choose_texture(t_cub *vars)
 		return (vars->cd);
 	if (vars->ray.hit == 3)
 		return (vars->od);
-	else if (vars->ray.side == 1 && vars->ray.rayDirY <= 0)
+	else if (vars->ray.side == 1 && vars->ray.ray_dir_y <= 0)
 		return (vars->north);
-	else if (vars->ray.side == 0 && vars->ray.rayDirX > 0)
+	else if (vars->ray.side == 0 && vars->ray.ray_dir_x > 0)
 		return (vars->south);
-	else if (vars->ray.side == 0 && vars->ray.rayDirX <= 0)
+	else if (vars->ray.side == 0 && vars->ray.ray_dir_x <= 0)
 		return (vars->east);
 	return (vars->west);
 }
@@ -61,12 +61,12 @@ void	draw_wall(t_cub *cub, t_tex_place tex, int x)
 {
 	int	y;
 
-	y = tex.drawStart;
-	while (++y < tex.drawEnd)
+	y = tex.draw_start;
+	while (++y < tex.draw_end)
 	{
-		tex.texY = (int)tex.texPos & (TEX_HEIGHT - 1);
-		tex.texPos += tex.step;
+		tex.tex_y = (int)tex.tex_pos & (TEX_HEIGHT - 1);
+		tex.tex_pos += tex.step;
 		my_mlx_pixel_put(&cub->img, x, y,
-			my_mlx_color_taker(choose_texture(cub), tex.texX, tex.texY));
+			my_mlx_color_taker(choose_texture(cub), tex.tex_x, tex.tex_y));
 	}
 }

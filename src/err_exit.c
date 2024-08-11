@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:28:17 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 19:58:18 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:40:07 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int	ext(void *params)
 	t_cub	*cub;
 
 	cub = params;
+	destroy_doors_and_walls(cub);
+	destroy_guns(cub);
 	mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+	free_cub(cub);
 	exit(0);
-	return (0);
 }
 
 void	destroy_doors_and_walls(t_cub *cub)

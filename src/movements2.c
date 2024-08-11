@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:10:45 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:57:20 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:34:14 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,31 @@ void	rot_left(t_cub *cub)
 {
 	double	tmp;
 
-	tmp = cub->player.dirX;
-	cub->player.dirX = cub->player.dirX * cos(-ROTSPEED)
-		- cub->player.dirY * sin(-ROTSPEED);
-	cub->player.dirY = tmp * sin(-ROTSPEED) + cub->player.dirY * cos(-ROTSPEED);
-	tmp = cub->player.planeX;
-	cub->player.planeX = cub->player.planeX * cos(-ROTSPEED)
-		- cub->player.planeY * sin(-ROTSPEED);
-	cub->player.planeY = tmp * sin(-ROTSPEED)
-		+ cub->player.planeY * cos(-ROTSPEED);
+	tmp = cub->player.dir_x;
+	cub->player.dir_x = cub->player.dir_x * cos(-ROTSPEED)
+		- cub->player.dir_y * sin(-ROTSPEED);
+	cub->player.dir_y = tmp * sin(-ROTSPEED)
+		+ cub->player.dir_y * cos(-ROTSPEED);
+	tmp = cub->player.plane_x;
+	cub->player.plane_x = cub->player.plane_x * cos(-ROTSPEED)
+		- cub->player.plane_y * sin(-ROTSPEED);
+	cub->player.plane_y = tmp * sin(-ROTSPEED)
+		+ cub->player.plane_y * cos(-ROTSPEED);
 }
 
 void	rot_right(t_cub *cub)
 {
 	double	tmp;
 
-	tmp = cub->player.dirX;
-	cub->player.dirX = cub->player.dirX * cos(ROTSPEED)
-		- cub->player.dirY * sin(ROTSPEED);
-	cub->player.dirY = tmp * sin(ROTSPEED) + cub->player.dirY * cos(ROTSPEED);
-	tmp = cub->player.planeX;
-	cub->player.planeX = cub->player.planeX * cos(ROTSPEED)
-		- cub->player.planeY * sin(ROTSPEED);
-	cub->player.planeY = tmp * sin(ROTSPEED)
-		+ cub->player.planeY * cos(ROTSPEED);
+	tmp = cub->player.dir_x;
+	cub->player.dir_x = cub->player.dir_x * cos(ROTSPEED)
+		- cub->player.dir_y * sin(ROTSPEED);
+	cub->player.dir_y = tmp * sin(ROTSPEED) + cub->player.dir_y * cos(ROTSPEED);
+	tmp = cub->player.plane_x;
+	cub->player.plane_x = cub->player.plane_x * cos(ROTSPEED)
+		- cub->player.plane_y * sin(ROTSPEED);
+	cub->player.plane_y = tmp * sin(ROTSPEED)
+		+ cub->player.plane_y * cos(ROTSPEED);
 }
 
 void	try_to_open_door(t_cub *cub)
@@ -47,8 +48,8 @@ void	try_to_open_door(t_cub *cub)
 	int	x;
 	int	y;
 
-	x = (int)cub->player.posX + round(cub->player.dirX);
-	y = (int)cub->player.posY + round(cub->player.dirY);
+	x = (int)cub->player.pos_x + round(cub->player.dir_x);
+	y = (int)cub->player.pos_y + round(cub->player.dir_y);
 	if (cub->map[x][y] == 'C')
 		cub->map[x][y] = 'O';
 	else if (cub->map[x][y] == 'O')

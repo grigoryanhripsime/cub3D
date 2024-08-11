@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:02:19 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 19:58:18 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:35:49 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	set_south_texture(t_cub *cub)
 	cub->south.wd = width;
 	cub->south.ht = height;
 	cub->south.addr = mlx_get_data_addr(cub->south.img,
-			&cub->south.bits_per_pixel, &cub->south.line_len, &cub->south.endian);
+			&cub->south.bits_per_pixel, &cub->south.line_len,
+			&cub->south.endian);
 }
 
 void	set_north_texture(t_cub *cub)
@@ -52,7 +53,8 @@ void	set_north_texture(t_cub *cub)
 	cub->north.wd = width;
 	cub->north.ht = height;
 	cub->north.addr = mlx_get_data_addr(cub->north.img,
-			&cub->north.bits_per_pixel, &cub->north.line_len, &cub->north.endian);
+			&cub->north.bits_per_pixel, &cub->north.line_len,
+			&cub->north.endian);
 }
 
 void	set_west_texture(t_cub *cub)
