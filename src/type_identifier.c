@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type_identifier.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:53:47 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/07 12:21:52 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:03:36 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_type_struct(t_type *types)
 {
-	types->NO = NULL;
-	types->SO = NULL;
-	types->WE = NULL;
-	types->EA = NULL;
+	types->north = NULL;
+	types->south = NULL;
+	types->west = NULL;
+	types->east = NULL;
 	types->F = NULL;
 	types->C = NULL;
 }
@@ -46,14 +46,14 @@ int	type_name(char *to_check, char *with, char *file)
 
 void	init_type(t_type *types, t_lst *map, char **split)
 {
-	if (type_name(split[0], "NO", split[1]) && !types->NO)
-		types->NO = split[1];
-	else if (type_name(split[0], "SO", split[1]) && !types->SO)
-		types->SO = split[1];
-	else if (type_name(split[0], "WE", split[1]) && !types->WE)
-		types->WE = split[1];
-	else if (type_name(split[0], "EA", split[1]) && !types->EA)
-		types->EA = split[1];
+	if (type_name(split[0], "NO", split[1]) && !types->north)
+		types->north = split[1];
+	else if (type_name(split[0], "SO", split[1]) && !types->south)
+		types->south = split[1];
+	else if (type_name(split[0], "WE", split[1]) && !types->west)
+		types->west = split[1];
+	else if (type_name(split[0], "EA", split[1]) && !types->east)
+		types->east = split[1];
 	else if (type_name(split[0], "F", split[1]) && !types->F)
 	{
 		types->F = type_set_color(split[1]);

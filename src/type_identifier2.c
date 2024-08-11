@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type_identifier2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:55:26 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 19:18:58 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:02:32 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void	type_error(t_type *types, char **split, t_lst *map)
 	free(split[0]);
 	free(split);
 	free_map_struct(map);
-	err("Type identifier error\n");
+	err("Type identifier errorrr\n");
 }

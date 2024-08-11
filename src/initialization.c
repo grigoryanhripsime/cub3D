@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 16:52:06 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:58:18 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_cub	*init_cub(char **map, t_type *types)
 	tabs_to_spaces(cub->map, cub);
 	check_borders(cub->map, cub);
 	check_doors(cub->map, cub);
+	cub->gun = NULL;
 	return (cub);
 }
 
@@ -38,8 +39,8 @@ t_cub	*init_game(char *av)
 
 	map_struct = read_map(av);
 	types = type_identifiers(&map_struct);
-	if (!types || !types->NO || !types->WE
-		|| !types->EA || !types->F || !types->C)
+	if (!types || !types->north || !types->west
+		|| !types->east || !types->F || !types->C)
 	{
 		free_types(types);
 		free_map_struct(map_struct);
@@ -59,14 +60,24 @@ t_cub	*init_game(char *av)
 
 void	init_textutes(t_cub *cub)
 {
-	set_SO_texture(cub);
-	set_NO_texture(cub);
-	set_WE_texture(cub);
-	set_EA_texture(cub);
+	set_south_texture(cub);
+	set_north_texture(cub);
+	set_west_texture(cub);
+	set_east_texture(cub);
 	set_close_door_texture(cub);
 	set_open_door_texture(cub);
-	set_gun1(cub);
-	set_gun2(cub);
+	set_guns(cub);
+	if (!cub->south.addr || !cub->north.addr || !cub->west.addr
+		|| !cub->east.addr || !cub->od.addr || !cub->cd.addr
+		|| !cub->gun[0].addr || !cub->gun[1].addr
+		|| !cub->gun[2].addr || !cub->gun[3].addr
+		|| !cub->gun[4].addr)
+	{
+		destroy_doors_and_walls(cub);
+		destroy_guns(cub);
+		free_cub(cub);
+		err("Coudn't open texture!\n");
+	}
 }
 
 void	init_mlx(t_cub *cub)
@@ -79,6 +90,7 @@ void	init_mlx(t_cub *cub)
 	cub->player.dirY = 0.0;
 	cub->player.planeX = 0.0;
 	cub->player.planeY = 0.0;
+	cub->play = false;
 	get_player_position(cub);
 	cub->fc = create_trgb(0, cub->types->F->r,
 			cub->types->F->g, cub->types->F->b);

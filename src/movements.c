@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:21:11 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 18:22:10 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:35:49 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,9 @@ void	move_right(t_cub *cub)
 int	moveing(int key, t_cub *cub)
 {
 	if (key == 53)
-	{
-		mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
-		//add destroying textures and freeing
-		free_cub(cub);
-		exit(0);
-	}
+		esc(cub);
 	if (key == SPACE)
-		gun_anim(cub);
+		cub->play = true;
 	else if (key == E)
 		try_to_open_door(cub);
 	else if (key == W)

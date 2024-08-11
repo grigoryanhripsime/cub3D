@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 18:21:47 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:58:18 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,8 @@
 # define MAP_HEIGHT 11
 # define TILE_SIZE 10
 
-# define screenWidth 640
-# define screenHeight 480
-# define texWidth 64 // must be power of two
-# define texHeight 64 // must be power of two
-# define mapWidth 24
-# define mapHeight 24
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
 typedef struct s_player
 {
@@ -105,10 +101,10 @@ typedef struct s_lst
 
 typedef struct s_type_identifier
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
 	t_color	*F;
 	t_color	*C;
 }	t_type;
@@ -132,11 +128,11 @@ typedef struct s_tex_place
 
 typedef struct s_textures
 {
-	void	*NO;
-	void	*SO;
+	void	*north;
+	void	*south;
 	void	*WE;
-	void	*EA;
-} t_textures;
+	void	*east;
+}	t_textures;
 
 typedef struct s_cub
 {
@@ -153,6 +149,7 @@ typedef struct s_cub
 	char		*epath;
 	char		*fcolor;
 	char		*rcolor;
+	bool		play;
 	t_mlx		mlx;
 	t_player	player;
 	t_img		img;
@@ -164,127 +161,133 @@ typedef struct s_cub
 	t_lst		*lst_map;
 	t_img		*gun;
 	t_img		gun_anim;
-	t_img		SO;
-	t_img		NO;
-	t_img		EA;
-	t_img		WE;
+	t_img		south;
+	t_img		north;
+	t_img		east;
+	t_img		west;
 	t_textures	textures;
 }	t_cub;
 
 //utils.c
-int		ft_strlen(char *s);
-int		ft_lstsize(t_lst *lst);
-void	ft_lstadd_back(t_lst **lst, char *new);
-int		ft_isspace(int ch);
-char	*ft_strchr(char *s, int c);
+int				ft_strlen(char *s);
+int				ft_lstsize(t_lst *lst);
+void			ft_lstadd_back(t_lst **lst, char *new);
+int				ft_isspace(int ch);
+char			*ft_strchr(char *s, int c);
 
 //utils2.c
-char	*ft_strstr(char *str, char *to_find);
-int		ft_strcmp(const char *s1, const char *s2);
-int		name_check_file(char *s);
-int		ft_atoi(char *str);
+char			*ft_strstr(char *str, char *to_find);
+int				ft_strcmp(const char *s1, const char *s2);
+int				name_check_file(char *s);
+int				ft_atoi(char *str);
 
 //ft_split.c
-int		ft_words_count(char *s);
-char	**ft_split(char const *s);
+int				ft_words_count(char *s);
+char			**ft_split(char const *s);
 
 //ft_split_color.c
-int		ft_words_count_color(char *s, char c);
-char	**ft_split_color(char const *s, char c);
+int				ft_words_count_color(char *s, char c);
+char			**ft_split_color(char const *s, char c);
 
 //err_exit.c
-void	err(char *str);
-int		ext(void *params);
+void			err(char *str);
+int				ext(void *params);
+void			destroy_doors_and_walls(t_cub *cub);
+void			destroy_guns(t_cub *cub);
+void			esc(t_cub *cub);
 
 //free.c
-void	free_map_struct(t_lst *map);
-void	free_array(char **map);
-void	free_types(t_type *types);
-void	free_cub(t_cub *cub);
+void			free_map_struct(t_lst *map);
+void			free_array(char **map);
+void			free_types(t_type *types);
+void			free_cub(t_cub *cub);
 
 //valid_map.c
-char	**lst_to_array(t_lst *map_stract, t_type *types);
-char	*replace_tab_with_spaces(char **map, int i, int j, t_cub *cub);
-void	tabs_to_spaces(char **map, t_cub *cub);
-void	check_borders(char **map, t_cub *cub);
-void	check_doors(char **map, t_cub *cub);
+char			**lst_to_array(t_lst *map_stract, t_type *types);
+char			*replace_tab_with_spaces(char **map, int i, int j, t_cub *cub);
+void			tabs_to_spaces(char **map, t_cub *cub);
+void			check_borders(char **map, t_cub *cub);
+void			check_doors(char **map, t_cub *cub);
 
 //initialization.c
-t_cub	*init_cub(char **map, t_type *types);
-t_cub	*init_game(char *av);
-void	init_mlx(t_cub *cub);
+t_cub			*init_cub(char **map, t_type *types);
+t_cub			*init_game(char *av);
+void			init_mlx(t_cub *cub);
 
 //initialization2.c
-t_lst	*read_map(char *av);
-void	get_player_position(t_cub *cub);
-void set_direction(t_cub *cub, char c);
+t_lst			*read_map(char *av);
+void			get_player_position(t_cub *cub);
+void			set_direction(t_cub *cub, char c);
 
 //struct_map_check.c
-int		check_char(t_type *types, char c, t_lst *map, int flag);
-void	check_valid_chars(t_lst *map, t_type *types);
-int		there_is_valid_char(char *s);
-void	remove_free_lines_start(t_lst **map);
-void	remove_free_lines_end(t_lst **map, t_type *types);
+int				check_char(t_type *types, char c, t_lst *map, int flag);
+void			check_valid_chars(t_lst *map, t_type *types);
+int				there_is_valid_char(char *s);
+void			remove_free_lines_start(t_lst **map);
+void			remove_free_lines_end(t_lst **map, t_type *types);
 
 //type_identifier.c
-void	init_type_struct(t_type *types);
-int		type_name(char *to_check, char *with, char *file);
-void	init_type(t_type *types, t_lst *map, char **split);
-void	check_identifier(t_lst **map, t_type *types);
-t_type	*type_identifiers(t_lst **map);
+void			init_type_struct(t_type *types);
+int				type_name(char *to_check, char *with, char *file);
+void			init_type(t_type *types, t_lst *map, char **split);
+void			check_identifier(t_lst **map, t_type *types);
+t_type			*type_identifiers(t_lst **map);
 
 //type_identifier2.c
-t_color	*type_set_color(char *str);
-void	type_error(t_type *types, char **split, t_lst *map);
-
+t_color			*type_set_color(char *str);
+void			type_error(t_type *types, char **split, t_lst *map);
 
 //draw.c
-int		create_trgb(int t, int r, int g, int b);
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+int				create_trgb(int t, int r, int g, int b);
+void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 unsigned int	my_mlx_color_taker(t_img data, int j, int i);
-t_img	choose_texture(t_cub *vars);
-void	draw_wall(t_cub *cub, t_tex_place tex, int x);
+t_img			choose_texture(t_cub *vars);
+void			draw_wall(t_cub *cub, t_tex_place tex, int x);
 
 //draw2.c
-void	draw_patalok_u_pol(t_cub *cub);
-int		ft_redraw(t_cub *cub);
-void	gun(t_cub *cub, int i);
-void	gun_anim(t_cub *cub);
+void			draw_patalok_u_pol(t_cub *cub);
+int				ft_redraw(t_cub *cub);
+void			gun(t_cub *cub, int i);
+void			gun_anim(t_cub *cub);
 
 //movements.c
-void	move_forward(t_cub *cub);
-void	move_back(t_cub *cub);
-void	move_left(t_cub *cub);
-void	move_right(t_cub *cub);
-int		moveing(int key, t_cub *cub);
+void			move_forward(t_cub *cub);
+void			move_back(t_cub *cub);
+void			move_left(t_cub *cub);
+void			move_right(t_cub *cub);
+int				moveing(int key, t_cub *cub);
 
 //movements2.c
-void	rot_left(t_cub *cub);
-void	rot_right(t_cub *cub);
-void try_to_open_door(t_cub *cub);
-int mouse_rot(int x, int y, t_cub *cub);
+void			rot_left(t_cub *cub);
+void			rot_right(t_cub *cub);
+void			try_to_open_door(t_cub *cub);
+int				mouse_rot(int x, int y, t_cub *cub);
 
 //raycasting.c
-void	raycasting(t_cub *cub);
-void	set_ray(t_cub *cub, int x);
-void	check_ray(t_cub *cub);
-void	find_wall(t_cub *cub);
-t_tex_place	set_texture(t_cub *cub);
+void			raycasting(t_cub *cub);
+void			set_ray(t_cub *cub, int x);
+void			check_ray(t_cub *cub);
+void			find_wall(t_cub *cub);
+t_tex_place		set_texture(t_cub *cub);
 
 //set_wall_textures.c
-void	set_SO_texture(t_cub *cub);
-void	set_NO_texture(t_cub *cub);
-void	set_WE_texture(t_cub *cub);
-void	set_EA_texture(t_cub *cub);
+void			set_south_texture(t_cub *cub);
+void			set_north_texture(t_cub *cub);
+void			set_west_texture(t_cub *cub);
+void			set_east_texture(t_cub *cub);
 
 //set_textures.c
-void	set_close_door_texture(t_cub *cub);
-void	set_open_door_texture(t_cub *cub);
-void	set_gun1(t_cub *cub);
-void	set_gun2(t_cub *cub);
+void			set_close_door_texture(t_cub *cub);
+void			set_open_door_texture(t_cub *cub);
 
 //minimap.c
-void	draw_square(double i, double j, t_cub *cub, int color);
-void	minimap(t_cub *cub);
+void			draw_square(double i, double j, t_cub *cub, int color);
+void			minimap(t_cub *cub);
+
+//set_gun_textures.c
+void			set_gun_0_1(t_cub *cub);
+void			set_gun_2_3(t_cub *cub);
+void			set_gun_4(t_cub *cub);
+void			set_guns(t_cub *cub);
 
 #endif

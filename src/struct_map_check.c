@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_map_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/05 19:48:55 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/09 16:47:21 by hrigrigo         ###   ########.fr       */
+/*   Creastted: 2024/08/05 19:48:55 by hrigrigo          #+#    #+#             */
+/*   Updated: 2024/08/11 19:52:06 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	remove_free_lines_start(t_lst **map)
 	if (!map)
 		return ;
 	while (*map && !(there_is_valid_char((*map)->line)
-			|| ft_strstr((*map)->line, "NO")
-			|| ft_strstr((*map)->line, "SO")
-			|| ft_strstr((*map)->line, "WE")
-			|| ft_strstr((*map)->line, "EA")
+			|| ft_strstr((*map)->line, "north")
+			|| ft_strstr((*map)->line, "south")
+			|| ft_strstr((*map)->line, "west")
+			|| ft_strstr((*map)->line, "east")
 			|| ft_strstr((*map)->line, "F")
 			|| ft_strstr((*map)->line, "C")))
 	{

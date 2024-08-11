@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:04:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 18:27:06 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:32:30 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	gun(t_cub *cub, int i)
 	int	y;
 	int	px;
 	int	py;
+	int	color;
 
 	px = 0;
 	x = cub->map_wd / 2 - cub->gun[i].wd / 2 - 1;
@@ -41,30 +42,31 @@ void	gun(t_cub *cub, int i)
 		py = 0;
 		while (++y < cub->map_ht)
 		{
-			int color = my_mlx_color_taker(cub->gun[i], px, py);
+			color = my_mlx_color_taker(cub->gun[i], px, py);
 			if (color != 0)
-				my_mlx_pixel_put(&cub->img, x, y,color);
+				my_mlx_pixel_put(&cub->img, x, y, color);
 			py++;
 		}
 		px++;
 	}
 }
 
-void gun_anim(t_cub *cub)
+void	gun_anim(t_cub *cub)
 {
 	static int	i;
-	static int	frame;
 
-	if (frame % 5 == 0)
+	if (cub->play == true && i <= 5)
 	{
 		gun(cub, i);
 		i++;
 		if (i == 5)
+		{
 			i = 0;
+			cub->play = false;
+		}
 	}
-	frame++;
-	if (frame >= 100000)
-		frame = 0;
+	else if (cub->play == false)
+		gun(cub, 0);
 }
 
 int	ft_redraw(t_cub *cub)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:08:46 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/06 16:11:01 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/11 19:58:18 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	free_types(t_type *types)
 {
 	if (!types)
 		return ;
-	if (types->NO)
-		free(types->NO);
-	if (types->SO)
-		free(types->SO);
-	if (types->WE)
-		free(types->WE);
-	if (types->EA)
-		free(types->EA);
+	if (types->north)
+		free(types->north);
+	if (types->south)
+		free(types->south);
+	if (types->west)
+		free(types->west);
+	if (types->east)
+		free(types->east);
 	if (types->F)
 		free(types->F);
 	if (types->C)
@@ -69,4 +69,7 @@ void	free_cub(t_cub *cub)
 	cub->map = NULL;
 	free_types(cub->types);
 	cub->types = NULL;
+	if (cub->gun)
+		free(cub->gun);
+	cub->gun = NULL;
 }

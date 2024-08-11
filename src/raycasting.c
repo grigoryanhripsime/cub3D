@@ -6,7 +6,7 @@
 /*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:24:00 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 18:11:21 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:00:28 by anrkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	find_wall(t_cub *cub)
 {
 	while (cub->ray.hit == 0)
 	{
-		//jump to next map square, either in x-direction, or in y-direction
 		if (cub->ray.sideDistX < cub->ray.sideDistY)
 		{
 			cub->ray.sideDistX += cub->ray.deltaDistX;
@@ -74,7 +73,6 @@ void	find_wall(t_cub *cub)
 			cub->player.mapY += cub->player.stepY;
 			cub->ray.side = 1;
 		}
-		//Check if ray has hit a wall
 		if (cub->map[cub->player.mapX][cub->player.mapY] == '1')
 			cub->ray.hit = 1;
 		if (cub->map[cub->player.mapX][cub->player.mapY] == 'C')
@@ -101,12 +99,12 @@ t_tex_place	set_texture(t_cub *cub)
 	else
 		wallX = cub->player.posX + cub->ray.wallDist * cub->ray.rayDirX;
 	wallX -= floor(wallX);
-	tex.texX = (int)(wallX * (double)texWidth);
+	tex.texX = (int)(wallX * (double)TEX_WIDTH);
 	if (cub->ray.side == 0 && cub->ray.rayDirX > 0)
-		tex.texX = texWidth - tex.texX - 1;
+		tex.texX = TEX_WIDTH - tex.texX - 1;
 	if (cub->ray.side == 1 && cub->ray.rayDirY < 0)
-		tex.texX = texWidth - tex.texX - 1;
-	tex.step = 1.0 * texHeight / tex.lineHeight;
+		tex.texX = TEX_WIDTH - tex.texX - 1;
+	tex.step = 1.0 * TEX_HEIGHT / tex.lineHeight;
 	tex.texPos = (tex.drawStart - cub->map_ht / 2 + tex.lineHeight / 2)
 		* tex.step;
 	return (tex);
