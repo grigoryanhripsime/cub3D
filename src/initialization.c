@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:13:20 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 20:26:20 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:49:46 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_cub	*init_cub(char **map, t_type *types)
 	}
 	cub->map = map;
 	cub->types = types;
+	cub->gun = NULL;
 	tabs_to_spaces(cub->map, cub);
 	check_borders(cub->map, cub);
 	check_doors(cub->map, cub);
-	cub->gun = NULL;
 	return (cub);
 }
 
@@ -92,9 +92,9 @@ void	init_mlx(t_cub *cub)
 	cub->player.plane_y = 0.0;
 	cub->play = false;
 	get_player_position(cub);
-	cub->fc = create_trgb(0, cub->types->floor_color->r,
+	cub->fc = create_rgb(0, cub->types->floor_color->r,
 			cub->types->floor_color->g, cub->types->floor_color->b);
-	cub->rc = create_trgb(0, cub->types->ceiling_color->r,
+	cub->rc = create_rgb(0, cub->types->ceiling_color->r,
 			cub->types->ceiling_color->g, cub->types->ceiling_color->b);
 	cub->mlx.mlx = mlx_init();
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx,

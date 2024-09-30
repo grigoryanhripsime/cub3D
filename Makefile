@@ -45,15 +45,13 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
-#for linux
-# $(NAME): $(OBJS)
-# 	$(CC) $(CFLAGS) $^ -o $@ 
-
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADERS) Makefile
+	mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	rm -rf $(OBJS_DIR)
+	# $(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)

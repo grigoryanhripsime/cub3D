@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 20:30:37 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/10 15:26:03 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/08/15 20:08:46 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ void	check_borders(char **map, t_cub *cub)
 				|| map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W' || map[i][j] == 'O'
 				|| map[i][j] == 'C')
-				&& (ft_isspace(map[i - 1][j])
-				|| ft_isspace(map[i][j - 1])
-				|| ft_isspace(map[i + 1][j])
-				|| ft_isspace(map[i][j + 1])))
+				&& ((ft_strlen(map[i - 1]) < j || ft_isspace(map[i - 1][j]))
+				|| (j == 0 || ft_isspace(map[i][j - 1]))
+				|| (ft_strlen(map[i + 1]) < j || ft_isspace(map[i + 1][j]))
+				|| !map[i][j + 1] || ft_isspace(map[i][j + 1])))
 			{
 				free_cub(cub);
 				err("Invalid map(invalid borders)\n");

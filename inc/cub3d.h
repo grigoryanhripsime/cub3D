@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 20:01:33 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 20:29:55 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:49:36 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,9 +238,9 @@ t_color			*type_set_color(char *str);
 void			type_error(t_type *types, char **split, t_lst *map);
 
 //draw.c
-int				create_trgb(int t, int r, int g, int b);
-void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
-unsigned int	my_mlx_color_taker(t_img data, int j, int i);
+int				create_rgb(int t, int r, int g, int b);
+void			my_pixel_put(t_img *img, int x, int y, int color);
+unsigned int	get_color(t_img data, int j, int i);
 t_img			choose_texture(t_cub *vars);
 void			draw_wall(t_cub *cub, t_tex_place tex, int x);
 

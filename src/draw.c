@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:14:16 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 20:28:13 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:49:38 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+void	my_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
@@ -35,7 +35,7 @@ t_img	choose_texture(t_cub *vars)
 	return (vars->west);
 }
 
-unsigned int	my_mlx_color_taker(t_img data, int j, int i)
+unsigned int	get_color(t_img data, int j, int i)
 {
 	char			*dst;
 	unsigned int	color;
@@ -52,7 +52,7 @@ unsigned int	my_mlx_color_taker(t_img data, int j, int i)
 	return (0);
 }
 
-int	create_trgb(int t, int r, int g, int b)
+int	create_rgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
@@ -66,7 +66,7 @@ void	draw_wall(t_cub *cub, t_tex_place tex, int x)
 	{
 		tex.tex_y = (int)tex.tex_pos & (TEX_HEIGHT - 1);
 		tex.tex_pos += tex.step;
-		my_mlx_pixel_put(&cub->img, x, y,
-			my_mlx_color_taker(choose_texture(cub), tex.tex_x, tex.tex_y));
+		my_pixel_put(&cub->img, x, y,
+			get_color(choose_texture(cub), tex.tex_x, tex.tex_y));
 	}
 }

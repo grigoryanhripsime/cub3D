@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrkhach <anrkhach@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:04:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/08/11 19:32:30 by anrkhach         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:48:44 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	gun(t_cub *cub, int i)
 		py = 0;
 		while (++y < cub->map_ht)
 		{
-			color = my_mlx_color_taker(cub->gun[i], px, py);
+			color = get_color(cub->gun[i], px, py);
 			if (color != 0)
-				my_mlx_pixel_put(&cub->img, x, y, color);
+				my_pixel_put(&cub->img, x, y, color);
 			py++;
 		}
 		px++;
