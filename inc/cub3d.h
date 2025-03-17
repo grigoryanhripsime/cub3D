@@ -261,7 +261,7 @@ int				moveing(int key, t_cub *cub);
 void			rot_left(t_cub *cub);
 void			rot_right(t_cub *cub);
 void			try_to_open_door(t_cub *cub);
-int				mouse_rot(int x, int y, t_cub *cub);
+int				mouse_rot(int x, t_cub *cub);
 
 //raycasting.c
 void			raycasting(t_cub *cub);

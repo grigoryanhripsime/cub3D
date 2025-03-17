@@ -56,11 +56,10 @@ void	try_to_open_door(t_cub *cub)
 		cub->map[x][y] = 'C';
 }
 
-int	mouse_rot(int x, int y, t_cub *cub)
+int	mouse_rot(int x, t_cub *cub)
 {
 	static int	past_view;
 
-	y = 0;
 	if (x < past_view)
 		rot_right(cub);
 	else if (x > past_view)

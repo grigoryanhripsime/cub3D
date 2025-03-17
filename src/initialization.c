@@ -101,7 +101,8 @@ void	init_mlx(t_cub *cub)
 			cub->map_wd, cub->map_ht, "cub3D");
 	init_textutes(cub);
 	mlx_hook(cub->mlx.win, 6, 0, &mouse_rot, cub);
-	mlx_hook(cub->mlx.win, 2, 0, &moveing, cub);
+	mlx_hook(cub->mlx.win, 2, 1L << 0, &moveing, cub);
+
 	mlx_loop_hook(cub->mlx.mlx, &ft_redraw, cub);
 	mlx_hook(cub->mlx.win, 17, 0, ext, cub);
 	mlx_loop(cub->mlx.mlx);
